@@ -1,0 +1,38 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "org.jhipster.bymi"
+    },
+    "jhipsterVersion": "6.2.0",
+    "applicationType": "monolith",
+    "baseName": "Bymi",
+    "packageName": "org.jhipster.bymi",
+    "packageFolder": "org/jhipster/bymi",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": "spring-websocket",
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": "elasticsearch",
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "MDM2MWYwZDM3OTIyMmI2NjRhMjBkMTA2M2JkNTUyOWQzZWUwMTc0MWU3YTE2YjJjYjQ0MDU4MTUyZjA1ODA4Y2QwZDE1NjliYjBjNjdiNDY2N2VmMWQxZDc1MWQ1NDdhZmUwODFhMzZkZTc1YzYzYjUyYzNlNWZiZGFkYmQ5NDk=",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "litera",
+    "clientThemeVariant": "dark",
+    "testFrameworks": ["gatling"],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "blueprints": []
+  }
+}

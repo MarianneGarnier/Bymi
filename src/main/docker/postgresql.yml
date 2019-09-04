@@ -1,0 +1,11 @@
+version: '2'
+services:
+  bymi-postgresql:
+    image: postgres:11.4
+    # volumes:
+    #     - ~/volumes/jhipster/Bymi/postgresql/:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=Bymi
+      - POSTGRES_PASSWORD=
+    ports:
+      - 5432:5432
