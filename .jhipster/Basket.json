@@ -1,0 +1,35 @@
+{
+    "name": "Basket",
+    "fields": [
+        {
+            "fieldName": "date",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "product",
+            "otherEntityRelationshipName": "baskets",
+            "relationshipName": "products",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "customUser",
+            "otherEntityRelationshipName": "basket",
+            "relationshipName": "user",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20190909071337",
+    "entityTableName": "basket",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

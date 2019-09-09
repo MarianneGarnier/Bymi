@@ -1,0 +1,41 @@
+{
+    "name": "PlacedOrder",
+    "fields": [
+        {
+            "fieldName": "date",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "orderId",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "OrderStatus",
+            "fieldValues": "PAID,IN_TRANSIT,DELIVERED"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "customUser",
+            "otherEntityRelationshipName": "orders",
+            "relationshipName": "user"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "product",
+            "otherEntityRelationshipName": "order",
+            "relationshipName": "products"
+        }
+    ],
+    "changelogDate": "20190909071338",
+    "entityTableName": "placed_order",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}
