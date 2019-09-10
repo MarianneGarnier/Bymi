@@ -3,7 +3,7 @@
     "fields": [
         {
             "fieldName": "date",
-            "fieldType": "String"
+            "fieldType": "ZonedDateTime"
         },
         {
             "fieldName": "orderId",
@@ -12,24 +12,25 @@
         {
             "fieldName": "status",
             "fieldType": "OrderStatus",
-            "fieldValues": "PAID,IN_TRANSIT,DELIVERED"
+            "fieldValues": "BASKET,PAID,IN_TRANSIT,DELIVERED"
         }
     ],
     "relationships": [
         {
             "relationshipType": "one-to-many",
-            "otherEntityName": "customUser",
-            "otherEntityRelationshipName": "orders",
-            "relationshipName": "user"
+            "otherEntityName": "orderLine",
+            "otherEntityRelationshipName": "order",
+            "relationshipName": "orderlines"
         },
         {
-            "relationshipType": "one-to-many",
-            "otherEntityName": "product",
-            "otherEntityRelationshipName": "order",
-            "relationshipName": "products"
+            "relationshipType": "many-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "orders",
+            "relationshipName": "user",
+            "otherEntityField": "id"
         }
     ],
-    "changelogDate": "20190909071338",
+    "changelogDate": "20190910123433",
     "entityTableName": "placed_order",
     "dto": "no",
     "pagination": "no",

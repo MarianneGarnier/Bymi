@@ -14,7 +14,7 @@
             "fieldType": "Double"
         },
         {
-            "fieldName": "image",
+            "fieldName": "imagePath",
             "fieldType": "String"
         },
         {
@@ -24,29 +24,20 @@
     ],
     "relationships": [
         {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "orderLine",
+            "otherEntityRelationshipName": "orderlines",
+            "relationshipName": "product"
+        },
+        {
             "relationshipType": "many-to-one",
-            "otherEntityName": "customUser",
+            "otherEntityName": "user",
             "otherEntityRelationshipName": "products",
             "relationshipName": "seller",
             "otherEntityField": "id"
-        },
-        {
-            "relationshipType": "many-to-one",
-            "otherEntityName": "placedOrder",
-            "otherEntityRelationshipName": "products",
-            "relationshipName": "order",
-            "otherEntityField": "id"
-        },
-        {
-            "relationshipType": "many-to-many",
-            "otherEntityName": "basket",
-            "otherEntityRelationshipName": "products",
-            "relationshipName": "baskets",
-            "otherEntityField": "id",
-            "ownerSide": false
         }
     ],
-    "changelogDate": "20190909071336",
+    "changelogDate": "20190910123432",
     "entityTableName": "product",
     "dto": "no",
     "pagination": "no",
