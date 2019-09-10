@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 # Usage
-#  ./delete-entity GROUP_ID ENTITY_NAME
+#  ./delete-entity.sh GROUP_ID ENTITY_NAME
 # GROUP_ID: com/subpackage/and/so/on/ (end with '/')
 # ENTITY_NAME: firstLowercaseNameOfEntity
-# Example: ./delete-entity org/jhipster/bymi/ customUser
+# Example: ./delete-entity.sh org/jhipster/bymi/ customUser
   
 echo "GROUP_ID is set to '$1'.";
 
