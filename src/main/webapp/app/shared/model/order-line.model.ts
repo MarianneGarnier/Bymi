@@ -13,7 +13,7 @@ export interface IOrderLine {
   quantity?: number;
   date?: Moment;
   status?: OrderLineStatus;
-  orderlines?: IProduct;
+  product?: IProduct;
   order?: IPlacedOrder;
 }
 
@@ -23,7 +23,7 @@ export class OrderLine implements IOrderLine {
     public quantity?: number,
     public date?: Moment,
     public status?: OrderLineStatus,
-    public orderlines?: IProduct,
+    public product?: IProduct,
     public order?: IPlacedOrder
   ) {}
 }

@@ -17,10 +17,10 @@
                 <dd>
                     <span>{{orderLine.status}}</span>
                 </dd>
-                <dt><span>Orderlines</span></dt>
+                <dt><span>Product</span></dt>
                 <dd>
-                    <div *ngIf="orderLine.orderlines">
-                        <a [routerLink]="['/product', orderLine.orderlines?.id, 'view']">{{orderLine.orderlines?.id}}</a>
+                    <div *ngIf="orderLine.product">
+                        <a [routerLink]="['/product', orderLine.product?.id, 'view']">{{orderLine.product?.id}}</a>
                     </div>
                 </dd>
                 <dt><span>Order</span></dt>

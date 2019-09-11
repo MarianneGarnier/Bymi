@@ -39,9 +39,9 @@ public class Product implements Serializable {
     @Column(name = "quantity")
     private Integer quantity;
 
-    @OneToMany(mappedBy = "orderlines")
+    @OneToMany(mappedBy = "product")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<OrderLine> products = new HashSet<>();
+    private Set<OrderLine> orderlines = new HashSet<>();
 
     @ManyToOne
     @JsonIgnoreProperties("products")
@@ -121,29 +121,29 @@ public class Product implements Serializable {
         this.quantity = quantity;
     }
 
-    public Set<OrderLine> getProducts() {
-        return products;
+    public Set<OrderLine> getOrderlines() {
+        return orderlines;
     }
 
-    public Product products(Set<OrderLine> orderLines) {
-        this.products = orderLines;
+    public Product orderlines(Set<OrderLine> orderLines) {
+        this.orderlines = orderLines;
         return this;
     }
 
-    public Product addProduct(OrderLine orderLine) {
-        this.products.add(orderLine);
-        orderLine.setOrderlines(this);
+    public Product addOrderlines(OrderLine orderLine) {
+        this.orderlines.add(orderLine);
+        orderLine.setProduct(this);
         return this;
     }
 
-    public Product removeProduct(OrderLine orderLine) {
-        this.products.remove(orderLine);
-        orderLine.setOrderlines(null);
+    public Product removeOrderlines(OrderLine orderLine) {
+        this.orderlines.remove(orderLine);
+        orderLine.setProduct(null);
         return this;
     }
 
-    public void setProducts(Set<OrderLine> orderLines) {
-        this.products = orderLines;
+    public void setOrderlines(Set<OrderLine> orderLines) {
+        this.orderlines = orderLines;
     }
 
     public User getSeller() {

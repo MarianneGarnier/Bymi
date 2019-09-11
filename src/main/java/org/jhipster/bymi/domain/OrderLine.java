@@ -36,8 +36,8 @@ public class OrderLine implements Serializable {
     private OrderLineStatus status;
 
     @ManyToOne
-    @JsonIgnoreProperties("products")
-    private Product orderlines;
+    @JsonIgnoreProperties("orderlines")
+    private Product product;
 
     @ManyToOne
     @JsonIgnoreProperties("orderlines")
@@ -91,17 +91,17 @@ public class OrderLine implements Serializable {
         this.status = status;
     }
 
-    public Product getOrderlines() {
-        return orderlines;
+    public Product getProduct() {
+        return product;
     }
 
-    public OrderLine orderlines(Product product) {
-        this.orderlines = product;
+    public OrderLine product(Product product) {
+        this.product = product;
         return this;
     }
 
-    public void setOrderlines(Product product) {
-        this.orderlines = product;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public PlacedOrder getOrder() {

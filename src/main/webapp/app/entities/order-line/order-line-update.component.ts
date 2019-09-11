@@ -30,7 +30,7 @@ export class OrderLineUpdateComponent implements OnInit {
     quantity: [],
     date: [],
     status: [],
-    orderlines: [],
+    product: [],
     order: []
   });
 
@@ -70,7 +70,7 @@ export class OrderLineUpdateComponent implements OnInit {
       quantity: orderLine.quantity,
       date: orderLine.date != null ? orderLine.date.format(DATE_TIME_FORMAT) : null,
       status: orderLine.status,
-      orderlines: orderLine.orderlines,
+      product: orderLine.product,
       order: orderLine.order
     });
   }
@@ -96,7 +96,7 @@ export class OrderLineUpdateComponent implements OnInit {
       quantity: this.editForm.get(['quantity']).value,
       date: this.editForm.get(['date']).value != null ? moment(this.editForm.get(['date']).value, DATE_TIME_FORMAT) : undefined,
       status: this.editForm.get(['status']).value,
-      orderlines: this.editForm.get(['orderlines']).value,
+      product: this.editForm.get(['product']).value,
       order: this.editForm.get(['order']).value
     };
   }

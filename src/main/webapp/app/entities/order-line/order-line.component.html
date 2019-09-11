@@ -21,7 +21,7 @@
             <th><span>Quantity</span></th>
             <th><span>Date</span></th>
             <th><span>Status</span></th>
-            <th><span>Orderlines</span></th>
+            <th><span>Product</span></th>
             <th><span>Order</span></th>
             <th></th>
             </tr>
@@ -33,8 +33,8 @@
                 <td>{{orderLine.date | date:'medium'}}</td>
                 <td>{{orderLine.status}}</td>
                 <td>
-                    <div *ngIf="orderLine.orderlines">
-                        <a [routerLink]="['/product', orderLine.orderlines?.id, 'view' ]" >{{orderLine.orderlines?.id}}</a>
+                    <div *ngIf="orderLine.product">
+                        <a [routerLink]="['/product', orderLine.product?.id, 'view' ]" >{{orderLine.product?.id}}</a>
                     </div>
                 </td>
                 <td>

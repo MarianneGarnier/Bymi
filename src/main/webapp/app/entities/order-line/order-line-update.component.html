@@ -30,10 +30,10 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" for="field_orderlines">Orderlines</label>
-                    <select class="form-control" id="field_orderlines" name="orderlines" formControlName="orderlines">
+                    <label class="form-control-label" for="field_product">Product</label>
+                    <select class="form-control" id="field_product" name="product" formControlName="product">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="productOption.id === editForm.get('orderlines').value?.id ? editForm.get('orderlines').value : productOption" *ngFor="let productOption of products; trackBy: trackProductById">{{productOption.id}}</option>
+                        <option [ngValue]="productOption.id === editForm.get('product').value?.id ? editForm.get('product').value : productOption" *ngFor="let productOption of products; trackBy: trackProductById">{{productOption.id}}</option>
                     </select>
                 </div>
                 <div class="form-group">

@@ -8,7 +8,7 @@ export interface IProduct {
   price?: number;
   imagePath?: string;
   quantity?: number;
-  products?: IOrderLine[];
+  orderlines?: IOrderLine[];
   seller?: IUser;
 }
 
@@ -20,7 +20,7 @@ export class Product implements IProduct {
     public price?: number,
     public imagePath?: string,
     public quantity?: number,
-    public products?: IOrderLine[],
+    public orderlines?: IOrderLine[],
     public seller?: IUser
   ) {}
 }

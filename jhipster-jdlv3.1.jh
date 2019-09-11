@@ -33,7 +33,7 @@ relationship ManyToOne {
 	Product{seller} to User{products}
 }
 relationship OneToMany {
-	Product{product} to OrderLine{orderlines}
+	Product{orderlines} to OrderLine{product}
 }
 relationship OneToMany {
 	PlacedOrder{orderlines} to OrderLine{order}
