@@ -16,7 +16,7 @@
     "databaseType": "sql",
     "devDatabaseType": "h2Disk",
     "prodDatabaseType": "postgresql",
-    "searchEngine": "elasticsearch",
+    "searchEngine": false,
     "messageBroker": false,
     "serviceDiscoveryType": false,
     "buildTool": "maven",
@@ -27,7 +27,9 @@
     "clientFramework": "angularX",
     "clientTheme": "litera",
     "clientThemeVariant": "dark",
-    "testFrameworks": ["gatling"],
+    "testFrameworks": [
+      "gatling"
+    ],
     "jhiPrefix": "jhi",
     "entitySuffix": "",
     "dtoSuffix": "DTO",
