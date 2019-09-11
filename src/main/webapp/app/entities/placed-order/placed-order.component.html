@@ -1,0 +1,65 @@
+<div>
+    <h2 id="page-heading">
+        <span>Placed Orders</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-placed-order" [routerLink]="['/placed-order/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create a new Placed Order
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="placedOrders?.length === 0">
+        <span>No placedOrders found</span>
+    </div>
+    <div class="table-responsive" *ngIf="placedOrders?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Date</span></th>
+            <th><span>Order Id</span></th>
+            <th><span>Status</span></th>
+            <th><span>User</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let placedOrder of placedOrders ;trackBy: trackId">
+                <td><a [routerLink]="['/placed-order', placedOrder.id, 'view' ]">{{placedOrder.id}}</a></td>
+                <td>{{placedOrder.date | date:'medium'}}</td>
+                <td>{{placedOrder.orderId}}</td>
+                <td>{{placedOrder.status}}</td>
+                <td>
+                    {{placedOrder.user?.id}}
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/placed-order', placedOrder.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/placed-order', placedOrder.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/placed-order', { outlets: { popup: placedOrder.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

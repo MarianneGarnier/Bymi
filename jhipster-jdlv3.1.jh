@@ -1,0 +1,40 @@
+entity Product {
+	productId Integer
+	name String
+    price Double
+    imagePath String
+    quantity Integer
+}
+
+entity PlacedOrder{
+	date ZonedDateTime
+    orderId Integer
+    status OrderStatus
+}
+
+entity OrderLine{
+    quantity Integer
+    date ZonedDateTime
+    status OrderLineStatus
+}
+
+enum OrderStatus{
+	BASKET, PAID, IN_TRANSIT, DELIVERED
+}
+
+enum OrderLineStatus{
+	RESERVED, EXPIRED, UNAVAILABLE
+}
+
+relationship ManyToOne {
+	PlacedOrder{user} to User{orders}
+}
+relationship ManyToOne {
+	Product{seller} to User{products}
+}
+relationship OneToMany {
+	Product{product} to OrderLine{orderlines}
+}
+relationship OneToMany {
+	PlacedOrder{orderlines} to OrderLine{order}
+}
