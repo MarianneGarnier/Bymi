@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Product } from 'app/shared/model/product.model';
+import { Product } from '../../shared/model/product.model';
 
 @Component({
   selector: 'jhi-small-display-product',
@@ -9,7 +9,9 @@ import { Product } from 'app/shared/model/product.model';
 export class SmallDisplayProductComponent implements OnInit {
   @Input() public product: Product;
 
-  constructor() {}
+  ngOnInit(): void {}
 
-  ngOnInit() {}
+  //constructor() {}
+
+  //ngOnInit() {}
 }

@@ -22,8 +22,6 @@ import * as moment from 'moment';
 import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ErrorComponent } from './layouts';
 import { SmallDisplayProductComponent } from './component/small-display-product/small-display-product.component';
 import { ListDisplayProductComponent } from './component/list-display-product/list-display-product.component';
-import { SingleDisplayProductComponent } from 'app/single-display-product/single-display-product.component';
-import { SingleDisplayProductModule } from 'app/single-display-product/single-display-product.module';
 
 @NgModule({
   imports: [
@@ -40,10 +38,9 @@ import { SingleDisplayProductModule } from 'app/single-display-product/single-di
     BymiAccountModule,
     // jhipster-needle-angular-add-module JHipster will add new module here
     BymiEntityModule,
-    BymiAppRoutingModule,
-    SingleDisplayProductModule
+    BymiAppRoutingModule
   ],
-  declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent, SingleDisplayProductComponent],
+  declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
