@@ -9,9 +9,7 @@ import { Product } from '../../shared/model/product.model';
 export class SmallDisplayProductComponent implements OnInit {
   @Input() public product: Product;
 
-  ngOnInit(): void {}
+  constructor() {}
 
-  //constructor() {}
-
-  //ngOnInit() {}
+  ngOnInit() {}
 }

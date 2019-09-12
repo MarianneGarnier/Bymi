@@ -14,8 +14,8 @@ export class ListDisplayProductComponent implements OnInit {
 
   ngOnInit() {
     let product1 = new Product(1, 1, 'test01', 15, 'null', 2, null, null);
-    let product2 = new Product(1, 2, 'test01', 16, 'null', 2, null, null);
-    let product3 = new Product(1, 3, 'test01', 95, 'null', 1, null, null);
+    let product2 = new Product(1, 2, 'test02', 16, 'null', 2, null, null);
+    let product3 = new Product(1, 3, 'test03', 95, 'null', 1, null, null);
     this.products = [];
     this.products.push(product1);
     this.products.push(product2);
