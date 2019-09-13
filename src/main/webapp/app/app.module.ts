@@ -39,7 +39,7 @@ import { SearchComponent } from './search/search.component';
     BymiEntityModule,
     BymiAppRoutingModule
   ],
-  declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent, SearchComponent],
+  declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
