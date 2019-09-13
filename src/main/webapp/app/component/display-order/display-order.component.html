@@ -1,6 +1,7 @@
-<p>
-    Order n°{{order.id}}
-</p>
+<div *ngIf="state === stateBasket; else notBasket">
+    Panier
+</div>
+<ng-template #notBasket>Order n°{{order.id}}</ng-template>
 <div *ngIf="orderLines && orderLines.length > 0; else noOrderLines">
     <div *ngFor="let orderLineLoop of orderLines">
         <jhi-display-order-line [orderLine]="orderLineLoop"></jhi-display-order-line>
