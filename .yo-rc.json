@@ -35,6 +35,6 @@
     "enableTranslation": false,
     "blueprints": [],
     "herokuAppName": "bymi",
-    "herokuDeployType": "git"
+    "herokuDeployType": "jar"
   }
 }
