@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
 
-import { LoginModalService, AccountService, Account } from 'app/core';
+import { Account, AccountService, LoginModalService } from 'app/core';
+import { OrderLine, OrderLineStatus } from '../shared/model/order-line.model';
+import { Product } from '../shared/model/product.model';
+import { OrderStatus, PlacedOrder } from '../shared/model/placed-order.model';
 
 @Component({
   selector: 'jhi-home',

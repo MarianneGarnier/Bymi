@@ -1,0 +1,9 @@
+<p>
+    Order n°{{order.id}}
+</p>
+<div *ngIf="orderLines && orderLines.length > 0; else noOrderLines">
+    <div *ngFor="let orderLineLoop of orderLines">
+        <jhi-display-order-line [orderLine]="orderLineLoop"></jhi-display-order-line>
+    </div>
+</div>
+<ng-template #noOrderLines>Panier Vide</ng-template>
