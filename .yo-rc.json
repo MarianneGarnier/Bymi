@@ -27,14 +27,14 @@
     "clientFramework": "angularX",
     "clientTheme": "litera",
     "clientThemeVariant": "dark",
-    "testFrameworks": [
-      "gatling"
-    ],
+    "testFrameworks": ["gatling"],
     "jhiPrefix": "jhi",
     "entitySuffix": "",
     "dtoSuffix": "DTO",
     "otherModules": [],
     "enableTranslation": false,
-    "blueprints": []
+    "blueprints": [],
+    "herokuAppName": "bymi",
+    "herokuDeployType": "git"
   }
 }
