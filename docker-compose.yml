@@ -1,0 +1,17 @@
+version: '2'
+services:
+  bymi-app:
+    image: bymi
+    environment:
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
+      - 'SPRING_PROFILES_ACTIVE=prod,swagger'
+      - MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=true
+      - 'SPRING_DATASOURCE_URL=jdbc:postgresql://bymi-postgresql:5432/Bymi'
+      - JHIPSTER_SLEEP=30
+    ports:
+      - '8080:8080'
+  bymi-postgresql:
+    image: 'postgres:11.4'
+    environment:
+      - POSTGRES_USER=Bymi
+      - POSTGRES_PASSWORD=
