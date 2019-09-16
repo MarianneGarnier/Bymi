@@ -7,7 +7,7 @@ import { ORDER_ROUTE } from './start-order.route';
 import { StartOrderComponent } from './start-order.component';
 
 @NgModule({
-  imports: [BymiSharedModule, RouterModule.forChild([ORDER_ROUTE])],
+  imports: [BymiSharedModule, RouterModule.forChild(ORDER_ROUTE)],
   declarations: [StartOrderComponent],
   exports: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

@@ -11,5 +11,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class StartOrderComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, private router: Router) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log('Hello ngOnInit');
+  }
+
+  public orderNextStepFillInformation() {
+    console.log('Hello orderNextStepFillInformation');
+  }
 }
