@@ -15,7 +15,8 @@ export class StartOrderComponent implements OnInit {
     console.log('Hello ngOnInit');
   }
 
-  public orderNextStepFillInformation() {
+  public confirmOrder() {
     console.log('Hello orderNextStepFillInformation');
+    this.router.navigateByUrl('order/confirmation');
   }
 }
