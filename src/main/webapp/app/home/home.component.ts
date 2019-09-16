@@ -1,8 +1,9 @@
+import { SearchService } from './../search/search.service';
 import { Component, OnInit } from '@angular/core';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
 
-import { LoginModalService, AccountService, Account } from 'app/core';
+import { LoginModalService, AccountService, Account, UserService } from 'app/core';
 
 @Component({
   selector: 'jhi-home',
@@ -16,7 +17,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private accountService: AccountService,
     private loginModalService: LoginModalService,
-    private eventManager: JhiEventManager
+    private eventManager: JhiEventManager,
+    private search: SearchService
   ) {}
 
   ngOnInit() {
@@ -40,5 +42,14 @@ export class HomeComponent implements OnInit {
 
   login() {
     this.modalRef = this.loginModalService.open();
+  }
+  test() {
+    this.search.testSearchFunctions('admin');
+    console.info(this.search.user);
+    this.search.orderLine.forEach(function(value) {
+      console.info(value.product, value.order);
+    });
+    this.search.searchProductById(37454);
+    console.info(this.search.product);
   }
 }

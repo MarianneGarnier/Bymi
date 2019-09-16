@@ -1,3 +1,4 @@
+import { SearchComponent } from 'app/search/search.component';
 import './vendor.ts';
 
 import { NgModule } from '@angular/core';
@@ -20,7 +21,6 @@ import { BymiEntityModule } from './entities/entity.module';
 import * as moment from 'moment';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ErrorComponent } from './layouts';
-import { SearchComponent } from './search/search.component';
 
 @NgModule({
   imports: [
@@ -39,7 +39,7 @@ import { SearchComponent } from './search/search.component';
     BymiEntityModule,
     BymiAppRoutingModule
   ],
-  declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent, SearchComponent],
+  declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
