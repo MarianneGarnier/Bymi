@@ -5,10 +5,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'jhi-start-order',
-  templateUrl: './start-order.component.html',
-  styleUrls: ['./start-order.component.scss']
+  templateUrl: './make-order.component.html',
+  styleUrls: ['./make-order.component.scss']
 })
-export class StartOrderComponent implements OnInit {
+export class MakeOrderComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {

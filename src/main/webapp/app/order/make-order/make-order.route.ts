@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
-import { StartOrderComponent } from './start-order.component';
+import { MakeOrderComponent } from './make-order.component';
 import { ConfirmOrderComponent } from 'app/order/confirm-order/confirm-order.component';
 
 export const ORDER_ROUTE: Routes = [
   {
     path: 'order/summary',
-    component: StartOrderComponent,
+    component: MakeOrderComponent,
     data: {
       authorities: [],
       pageTitle: 'Paiement commande'

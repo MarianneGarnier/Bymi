@@ -21,7 +21,7 @@ import * as moment from 'moment';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { ErrorComponent, FooterComponent, JhiMainComponent, NavbarComponent, PageRibbonComponent } from './layouts';
 import { SearchComponent } from './search/search.component';
-import { StartOrderModule } from 'app/order/start-order/start-order.module';
+import { MakeOrderModule } from 'app/order/make-order/make-order.module';
 
 @NgModule({
   imports: [
@@ -38,7 +38,7 @@ import { StartOrderModule } from 'app/order/start-order/start-order.module';
     BymiAccountModule,
     // jhipster-needle-angular-add-module JHipster will add new module here
     BymiEntityModule,
-    StartOrderModule,
+    MakeOrderModule,
     BymiAppRoutingModule
   ],
   declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent, SearchComponent],
