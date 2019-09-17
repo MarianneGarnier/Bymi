@@ -158,6 +158,14 @@
                     </li>
                 </ul>
             </li>
+            <li *ngSwitchCase="true" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link" routerLink="/orderList" (click)="collapseNavbar()">
+                    <span>
+                        <fa-icon icon="shopping-bag"></fa-icon>
+                        <span>Panier</span>
+                    </span>
+                </a>
+            </li>
         </ul>
     </div>
 </nav>

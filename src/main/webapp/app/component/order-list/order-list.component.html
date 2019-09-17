@@ -1,0 +1,9 @@
+<p>
+    Mes Commandes
+</p>
+<div *ngIf="orderList && orderList.length > 0; else noOrders">
+    <div *ngFor="let orderLoop of orderList">
+        <jhi-display-order [order]="orderLoop"></jhi-display-order>
+    </div>
+</div>
+<ng-template #noOrderLines>Aucune Commande</ng-template>

@@ -18,9 +18,10 @@ import { BymiHomeModule } from './home/home.module';
 import { BymiAccountModule } from './account/account.module';
 import { BymiEntityModule } from './entities/entity.module';
 import * as moment from 'moment';
-// jhipster-needle-angular-add-module-import JHipster will add new module here
 import { ErrorComponent, FooterComponent, JhiMainComponent, NavbarComponent, PageRibbonComponent } from './layouts';
-import { SearchComponent } from './search/search.component';
+import { MainDisplayProductModule } from './component/main-display-product/main-display-product.module';
+import { OrderListModule } from './component/order-list/order-list.module';
+import { SmallDisplayProductComponent } from './component/small-display-product/small-display-product.component';
 import { MakeOrderModule } from 'app/order/make-order/make-order.module';
 
 @NgModule({
@@ -39,9 +40,11 @@ import { MakeOrderModule } from 'app/order/make-order/make-order.module';
     // jhipster-needle-angular-add-module JHipster will add new module here
     BymiEntityModule,
     MakeOrderModule,
+    MainDisplayProductModule,
+    OrderListModule,
     BymiAppRoutingModule
   ],
-  declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent, SearchComponent],
+  declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
