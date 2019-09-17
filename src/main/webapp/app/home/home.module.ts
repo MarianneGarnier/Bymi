@@ -3,11 +3,15 @@ import { RouterModule } from '@angular/router';
 
 import { BymiSharedModule } from 'app/shared';
 import { HOME_ROUTE, HomeComponent } from './';
+import { SmallDisplayProductComponent } from 'app/component/small-display-product/small-display-product.component';
+import { ListDisplayProductComponent } from 'app/component/list-display-product/list-display-product.component';
+import { DisplayOrderComponent } from '../component/display-order/display-order.component';
+import { DisplayOrderLineComponent } from '../component/display-order-line/display-order-line.component';
 import { SearchComponent } from 'app/search/search.component';
 
 @NgModule({
   imports: [BymiSharedModule, RouterModule.forChild([HOME_ROUTE])],
-  declarations: [HomeComponent, SearchComponent],
+  declarations: [HomeComponent, SearchComponent, ListDisplayProductComponent, SmallDisplayProductComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class BymiHomeModule {}

@@ -1,5 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BymiSharedCommonModule, JhiLoginModalComponent, HasAnyAuthorityDirective } from './';
+import { SmallDisplayProductComponent } from '../component/small-display-product/small-display-product.component';
 
 @NgModule({
   imports: [BymiSharedCommonModule],
