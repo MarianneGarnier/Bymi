@@ -2,7 +2,6 @@ import { SearchService } from './../../search/search.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { Product, IProduct } from '../../shared/model/product.model';
 import { ActivatedRoute, Router, Params } from '@angular/router';
-import { number } from 'yargs';
 import { HttpResponse } from '@angular/common/http';
 
 @Component({
@@ -19,8 +18,7 @@ export class MainDisplayProductComponent implements OnInit {
     this.activatedRoute.params.subscribe((params: Params) => {
       const todoId: string = params['id'];
       if (todoId) {
-        // TODO: service product by ID
-        let promise: Promise<HttpResponse<IProduct>> = this.search.findProductById(Number(todoId));
+        const promise: Promise<HttpResponse<IProduct>> = this.search.findProductById(Number(todoId));
         promise.then((res: HttpResponse<IProduct>) => {
           this.product = res.body;
         });

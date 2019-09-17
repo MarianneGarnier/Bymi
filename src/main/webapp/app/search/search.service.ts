@@ -35,15 +35,15 @@ export class SearchService {
   // Lines to put in any method that wants to call this one. Do not forget arguments and to rename the service if necessary
   // let promise: Promise<HttpResponse<IOrderLine[]>> = this.search.getOrdersByUser();
   // promise.then((res: HttpResponse<IOrderLine[]>) => this.orderLine = res.body);
-  public getOrdersByUser(user: User) {
-    let promise: Promise<HttpResponse<IOrderLine[]>> = this.orderLineService.query('user:' + user).toPromise();
+  public getOrdersByUser(user: User): Promise<HttpResponse<IOrderLine[]>> {
+    return this.orderLineService.query('user:' + user).toPromise();
   }
 
   // Lines to put in any method that wants to call this one. Do not forget arguments and to rename the service if necessary
   // let promise: Promise<HttpResponse<IUser>> = this.search.findUserByLogin();
   // promise.then((res: HttpResponse<IUser>) => this.user = res.body);
-  public findUserByLogin(login: string) {
-    let promise: Promise<HttpResponse<IUser>> = this.userService.find(login).toPromise();
+  public findUserByLogin(login: string): Promise<HttpResponse<IUser>> {
+    return this.userService.find(login).toPromise();
   }
 
   /*

@@ -20,8 +20,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private accountService: AccountService,
     private loginModalService: LoginModalService,
-    private eventManager: JhiEventManager,
-    private search: SearchService
+    private eventManager: JhiEventManager
   ) {}
 
   ngOnInit() {
@@ -45,12 +44,5 @@ export class HomeComponent implements OnInit {
 
   login() {
     this.modalRef = this.loginModalService.open();
-  }
-  test() {
-    this.search.testSearchFunctions('admin');
-    console.info(this.search.user);
-    this.search.orderLine.forEach(function(value) {
-      console.info(value.product, value.order);
-    });
   }
 }
