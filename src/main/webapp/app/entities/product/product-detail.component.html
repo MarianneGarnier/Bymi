@@ -5,9 +5,9 @@
             <hr>
             <jhi-alert-error></jhi-alert-error>
             <dl class="row-md jh-entity-details">
-                <dt><span>Product Id</span></dt>
+                <dt><span>Id Product</span></dt>
                 <dd>
-                    <span>{{product.productId}}</span>
+                    <span>{{product.idProduct}}</span>
                 </dd>
                 <dt><span>Name</span></dt>
                 <dd>
@@ -25,9 +25,13 @@
                 <dd>
                     <span>{{product.quantity}}</span>
                 </dd>
-                <dt><span>Seller</span></dt>
+                <dt><span>Description</span></dt>
                 <dd>
-                    {{product.seller?.id}}
+                    <span>{{product.description}}</span>
+                </dd>
+                <dt><span>User</span></dt>
+                <dd>
+                    {{product.user?.login}}
                 </dd>
             </dl>
 
