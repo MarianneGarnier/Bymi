@@ -15,7 +15,7 @@ import { filter, map } from 'rxjs/operators';
 })
 export class SearchService {
   @Input() id: number;
-  public product: Product;
+  public product: Product = null;
   public orderLine: OrderLine[];
   public user: User;
 
@@ -27,14 +27,7 @@ export class SearchService {
     private userService: UserService
   ) {}
 
-  /*
-   ** Not used, can probably be safely deleted
-   */
-  search(id: any): Observable<any> {
-    return this.http.get(SERVER_API_URL + '/products/:{id}', id);
-  }
-
-  searchProductById(id: number) {
+  public findProductById(id: number): Product {
     this.productService
       .find(this.id)
       .pipe(
@@ -44,12 +37,14 @@ export class SearchService {
       .subscribe(
         (res: IProduct) => {
           this.product = res;
+          console.log(res);
         },
         (res: HttpErrorResponse) => this.onError(res.message)
       );
+    return this.product;
   }
 
-  public searchOrdersByUser(user: User) {
+  public getOrdersByUser(user: User) {
     this.orderLineService
       .query('user:' + user)
       .pipe(
@@ -61,7 +56,7 @@ export class SearchService {
       });
   }
 
-  public getUserByLogin(login: string) {
+  public findUserByLogin(login: string) {
     this.userService
       .find(login)
       .pipe(
@@ -77,8 +72,8 @@ export class SearchService {
   }
 
   public testSearchFunctions(login: string) {
-    this.getUserByLogin(login);
-    this.searchOrdersByUser(this.user);
+    this.findUserByLogin(login);
+    this.getOrdersByUser(this.user);
   }
 
   protected onError(errorMessage: string) {

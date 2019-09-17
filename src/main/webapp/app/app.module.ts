@@ -1,4 +1,3 @@
-import { SearchComponent } from 'app/search/search.component';
 import './vendor.ts';
 
 import { NgModule } from '@angular/core';

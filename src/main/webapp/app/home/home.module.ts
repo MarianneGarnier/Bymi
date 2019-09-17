@@ -7,11 +7,10 @@ import { SmallDisplayProductComponent } from 'app/component/small-display-produc
 import { ListDisplayProductComponent } from 'app/component/list-display-product/list-display-product.component';
 import { DisplayOrderComponent } from '../component/display-order/display-order.component';
 import { DisplayOrderLineComponent } from '../component/display-order-line/display-order-line.component';
-import { SearchComponent } from 'app/search/search.component';
 
 @NgModule({
   imports: [BymiSharedModule, RouterModule.forChild([HOME_ROUTE])],
-  declarations: [HomeComponent, SearchComponent, ListDisplayProductComponent, SmallDisplayProductComponent],
+  declarations: [HomeComponent, ListDisplayProductComponent, SmallDisplayProductComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class BymiHomeModule {}
