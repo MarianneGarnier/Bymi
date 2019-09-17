@@ -1,21 +1,19 @@
-import { HttpClient, HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { IUser } from './../core/user/user.model';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable, Input } from '@angular/core';
-import { Observable } from 'rxjs';
-import { SERVER_API_URL } from '../app.constants';
 import { JhiAlertService } from 'ng-jhipster';
 import { ProductService } from 'app/entities/product';
 import { OrderLineService } from 'app/entities/order-line';
-import { UserService, User } from 'app/core';
-import { Product, IProduct } from 'app/shared/model/product.model';
-import { OrderLine, IOrderLine } from 'app/shared/model/order-line.model';
-import { filter, map } from 'rxjs/operators';
+import { User, UserService } from 'app/core';
+import { IProduct, Product } from 'app/shared/model/product.model';
+import { IOrderLine, OrderLine } from 'app/shared/model/order-line.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SearchService {
   @Input() id: number;
-  public product: Product = null;
+  public product: Product;
   public orderLine: OrderLine[];
   public user: User;
 
@@ -27,50 +25,30 @@ export class SearchService {
     private userService: UserService
   ) {}
 
-  public findProductById(id: number): Product {
-    this.productService
-      .find(this.id)
-      .pipe(
-        filter((res: HttpResponse<IProduct>) => res.ok),
-        map((res: HttpResponse<IProduct>) => res.body)
-      )
-      .subscribe(
-        (res: IProduct) => {
-          this.product = res;
-          console.log(res);
-        },
-        (res: HttpErrorResponse) => this.onError(res.message)
-      );
-    return this.product;
+  // Lines to put in any method that wants to call this one. Do not forget arguments and to rename the service if necessary
+  // let promise: Promise<HttpResponse<IProduct>> = this.search.findProductById();
+  // promise.then((res: HttpResponse<IProduct>) => {this.product = res.body;});
+  public findProductById(id: number): Promise<HttpResponse<IProduct>> {
+    return this.productService.find(id).toPromise();
   }
 
-  public getOrdersByUser(user: User) {
-    this.orderLineService
-      .query('user:' + user)
-      .pipe(
-        filter((res: HttpResponse<IOrderLine[]>) => res.ok),
-        map((res: HttpResponse<IOrderLine[]>) => res.body)
-      )
-      .subscribe((res: IOrderLine[]) => {
-        this.orderLine = res;
-      });
+  // Lines to put in any method that wants to call this one. Do not forget arguments and to rename the service if necessary
+  // let promise: Promise<HttpResponse<IOrderLine[]>> = this.search.getOrdersByUser();
+  // promise.then((res: HttpResponse<IOrderLine[]>) => this.orderLine = res.body);
+  public getOrdersByUser(user: User): Promise<HttpResponse<IOrderLine[]>> {
+    return this.orderLineService.query('user:' + user).toPromise();
   }
 
-  public findUserByLogin(login: string) {
-    this.userService
-      .find(login)
-      .pipe(
-        filter((res: HttpResponse<User>) => res.ok),
-        map((res: HttpResponse<User>) => res.body)
-      )
-      .subscribe(
-        (res: User) => {
-          this.user = res;
-        },
-        (res: HttpErrorResponse) => this.onError(res.message)
-      );
+  // Lines to put in any method that wants to call this one. Do not forget arguments and to rename the service if necessary
+  // let promise: Promise<HttpResponse<IUser>> = this.search.findUserByLogin();
+  // promise.then((res: HttpResponse<IUser>) => this.user = res.body);
+  public findUserByLogin(login: string): Promise<HttpResponse<IUser>> {
+    return this.userService.find(login).toPromise();
   }
 
+  /*
+   * Just a test, delete when not needed
+   */
   public testSearchFunctions(login: string) {
     this.findUserByLogin(login);
     this.getOrdersByUser(this.user);
