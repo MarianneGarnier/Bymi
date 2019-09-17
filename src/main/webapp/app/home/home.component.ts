@@ -6,6 +6,7 @@ import { Account, AccountService, LoginModalService, UserService } from 'app/cor
 import { OrderLine, OrderLineStatus } from '../shared/model/order-line.model';
 import { Product } from '../shared/model/product.model';
 import { OrderStatus, PlacedOrder } from '../shared/model/placed-order.model';
+import { SearchService } from 'app/search/search.service';
 
 @Component({
   selector: 'jhi-home',
@@ -51,7 +52,5 @@ export class HomeComponent implements OnInit {
     this.search.orderLine.forEach(function(value) {
       console.info(value.product, value.order);
     });
-    this.search.searchProductById(37454);
-    console.info(this.search.product);
   }
 }

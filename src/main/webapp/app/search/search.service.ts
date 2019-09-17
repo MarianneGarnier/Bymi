@@ -14,8 +14,6 @@ import { filter, map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class SearchService {
-  @Input() id: number;
-  public product: Product;
   public orderLine: OrderLine[];
   public user: User;
 
@@ -27,29 +25,11 @@ export class SearchService {
     private userService: UserService
   ) {}
 
-  /*
-   ** Not used, can probably be safely deleted
-   */
-  search(id: any): Observable<any> {
-    return this.http.get(SERVER_API_URL + '/products/:{id}', id);
+  public findProductById(id: number): Promise<HttpResponse<IProduct>> {
+    return this.productService.find(id).toPromise();
   }
 
-  searchProductById(id: number) {
-    this.productService
-      .find(this.id)
-      .pipe(
-        filter((res: HttpResponse<IProduct>) => res.ok),
-        map((res: HttpResponse<IProduct>) => res.body)
-      )
-      .subscribe(
-        (res: IProduct) => {
-          this.product = res;
-        },
-        (res: HttpErrorResponse) => this.onError(res.message)
-      );
-  }
-
-  public searchOrdersByUser(user: User) {
+  public getOrdersByUser(user: User) {
     this.orderLineService
       .query('user:' + user)
       .pipe(
@@ -61,7 +41,7 @@ export class SearchService {
       });
   }
 
-  public getUserByLogin(login: string) {
+  public findUserByLogin(login: string) {
     this.userService
       .find(login)
       .pipe(
@@ -75,10 +55,12 @@ export class SearchService {
         (res: HttpErrorResponse) => this.onError(res.message)
       );
   }
-
+  /*
+   * Just a test, delete when not needed
+   */
   public testSearchFunctions(login: string) {
-    this.getUserByLogin(login);
-    this.searchOrdersByUser(this.user);
+    this.findUserByLogin(login);
+    this.getOrdersByUser(this.user);
   }
 
   protected onError(errorMessage: string) {
