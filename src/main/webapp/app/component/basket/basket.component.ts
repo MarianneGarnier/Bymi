@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { PlacedOrderService } from 'app/entities/placed-order';
 import { PlacedOrder, IPlacedOrder, OrderStatus } from 'app/shared/model/placed-order.model';
-import { OrderLine, OrderLineStatus } from '../../shared/model/order-line.model';
-import { Product } from '../../shared/model/product.model';
+import { OrderLine, OrderLineStatus } from 'app/shared/model/order-line.model';
+import { Product } from 'app/shared/model/product.model';
 import { filter, map } from 'rxjs/operators';
 import { JhiAlertService } from 'ng-jhipster';
 import { UserService, User } from 'app/core';
@@ -26,7 +26,7 @@ export class BasketComponent implements OnInit {
 
   ngOnInit() {
     // this.user = this.userService.getUserWithAuthorities().get();
-    this.getBasket(this.user);
+    //this.getBasket(this.user);
   }
 
   getBasket(user: User) {
