@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Account, AccountService } from 'app/core';
 
 // TODO ajouter entitée panier de l'utilisateur
 
@@ -9,10 +10,17 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./make-order.component.scss']
 })
 export class MakeOrderComponent implements OnInit {
-  constructor(private activatedRoute: ActivatedRoute, private router: Router) {}
+  account: Account;
+
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private accountService: AccountService) {}
 
   ngOnInit() {
-    console.log('Hello ngOnInit');
+    //this.user = UserService.;
+    console.log('Hello ngOnInit makeordercomponent');
+
+    this.accountService.identity().then((account: Account) => {
+      this.account = account;
+    });
   }
 
   public confirmOrder() {
