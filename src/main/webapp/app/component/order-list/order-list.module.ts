@@ -12,7 +12,7 @@ import { BymiHomeModule } from '../../home';
 @NgModule({
   imports: [BymiSharedModule, BymiHomeModule, RouterModule.forChild([ORDERS_ROUTE]), BymiCoreModule],
   declarations: [OrderListComponent, DisplayOrderComponent, DisplayOrderLineComponent],
-  exports: [],
+  exports: [DisplayOrderComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class OrderListModule {}
