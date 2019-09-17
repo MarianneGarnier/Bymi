@@ -49,4 +49,4 @@ notifications:
 # safelist
 branches:
   only:
-    - master
+    - frontendIntegration
