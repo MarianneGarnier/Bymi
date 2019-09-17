@@ -20,5 +20,17 @@ export class ListDisplayProductComponent implements OnInit {
     this.products.push(product1);
     this.products.push(product2);
     this.products.push(product3);
+    this.products.push(product1);
+    this.products.push(product2);
+    this.products.push(product3);
+    this.products.push(product1);
+    this.products.push(product2);
+    this.products.push(product3);
+    this.products.push(product1);
+    this.products.push(product2);
+    this.products.push(product3);
+    this.products.push(product1);
+    this.products.push(product2);
+    this.products.push(product3);
   }
 }

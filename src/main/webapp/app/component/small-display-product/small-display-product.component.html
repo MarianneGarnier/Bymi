@@ -1,5 +1,17 @@
-<img src="https://photos.maty.com/0652342/V1/400/collier-argent-925.jpeg" height="100" width="100">
-<p>
-    <a routerLink="/viewProduct/{{product.productId}}">{{product.name}}</a>   {{product.price}}€
-</p>
 
+<div class="card card-primary">
+
+        <img  class="card-img-top" src="https://photos.maty.com/0652342/V1/400/collier-argent-925.jpeg" height="200" width="200">
+
+        <h3 class="card-title">
+            {{product.name}} <span class="badge badge-light float-right">{{product.price}}€</span>
+        </h3>
+        <p class="card-text"> ome quick example text to build on the card title and make up the bulk of the card's content</p>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">{{product.quantity}} restants</li>
+    </ul>
+    <div class="card-body">
+        <a href="/viewProduct/{{product.productId}}" class="card-link">Détails</a>
+        <a href="#" class="card-link">Ajouter au Panier</a>
+    </div>
+</div>
