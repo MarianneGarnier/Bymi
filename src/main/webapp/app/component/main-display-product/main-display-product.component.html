@@ -1,8 +1,8 @@
-<h1>
+<h1 *ngIf="product">
     {{product.name}}
 </h1>
 <img src="https://photos.maty.com/0652342/V1/400/collier-argent-925.jpeg">
-<p>
+<p *ngIf="product">
     {{product.price}}€
 </p>
 <button>BUY</button>

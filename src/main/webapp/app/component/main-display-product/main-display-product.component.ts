@@ -28,5 +28,8 @@ export class MainDisplayProductComponent implements OnInit {
         this.product = { name: 'error', price: 0 };
       }
     });
+
+    this.search.testSearchFunctions('admin');
+    console.log(this.search.user, this.search.orderLine);
   }
 }
