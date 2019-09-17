@@ -14,6 +14,8 @@ import { filter, map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class SearchService {
+  @Input() id: number;
+  public product: Product;
   public orderLine: OrderLine[];
   public user: User;
 
