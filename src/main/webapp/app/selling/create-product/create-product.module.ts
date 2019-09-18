@@ -1,8 +1,12 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { CREATE_PRODUCT_ROUTE } from 'app/selling/create-product/create-product.route';
+import { CreateProductComponent } from 'app/selling/create-product/create-product.component';
+import { BymiSharedModule } from 'app/shared';
 
 @NgModule({
-  declarations: [],
-  imports: [CommonModule]
+  imports: [BymiSharedModule, RouterModule.forChild([CREATE_PRODUCT_ROUTE])],
+  declarations: [CreateProductComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class CreateProductModule {}
