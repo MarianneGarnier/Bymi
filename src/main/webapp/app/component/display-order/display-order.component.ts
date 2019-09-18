@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IPlacedOrder, PlacedOrder, OrderStatus } from '../../shared/model/placed-order.model';
 import { OrderLine } from '../../shared/model/order-line.model';
-
+import * as $ from 'jquery';
 @Component({
   selector: 'jhi-display-order',
   templateUrl: './display-order.component.html',
@@ -11,12 +11,33 @@ export class DisplayOrderComponent implements OnInit {
   @Input() public order: PlacedOrder;
   orderLines: OrderLine[];
   public stateBasket = OrderStatus.BASKET;
-  public state;
+  status: String;
+  labelType: String;
 
   constructor() {}
 
   ngOnInit() {
     this.orderLines = this.order.orderlines;
-    this.state = this.order.status;
+    switch (this.order.status) {
+      case OrderStatus.BASKET: {
+        this.status = 'Panier';
+        break;
+      }
+      case OrderStatus.PAID: {
+        this.status = 'Commande payée';
+        this.labelType = 'badge badge-warning';
+        break;
+      }
+      case OrderStatus.DELIVERED: {
+        this.status = 'Commande livrée';
+        this.labelType = 'badge badge-success';
+        break;
+      }
+      case OrderStatus.IN_TRANSIT: {
+        this.status = 'Commande en cour de livraison';
+        this.labelType = 'badge badge-info';
+        break;
+      }
+    }
   }
 }

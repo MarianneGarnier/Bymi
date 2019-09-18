@@ -1,26 +1,28 @@
-import { IOrderLine } from 'app/shared/model/order-line.model';
 import { IUser } from 'app/core/user/user.model';
+import { IOrderLine } from 'app/shared/model/order-line.model';
 
 export interface IProduct {
   id?: number;
-  productId?: number;
+  idProduct?: number;
   name?: string;
   price?: number;
   imagePath?: string;
   quantity?: number;
+  description?: string;
+  user?: IUser;
   orderlines?: IOrderLine[];
-  seller?: IUser;
 }
 
 export class Product implements IProduct {
   constructor(
     public id?: number,
-    public productId?: number,
+    public idProduct?: number,
     public name?: string,
     public price?: number,
     public imagePath?: string,
     public quantity?: number,
-    public orderlines?: IOrderLine[],
-    public seller?: IUser
+    public description?: string,
+    public user?: IUser,
+    public orderlines?: IOrderLine[]
   ) {}
 }

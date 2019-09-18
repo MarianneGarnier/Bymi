@@ -10,9 +10,9 @@
                         readonly />
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" for="field_productId">Product Id</label>
-                    <input type="number" class="form-control" name="productId" id="field_productId"
-                           formControlName="productId"/>
+                    <label class="form-control-label" for="field_idProduct">Id Product</label>
+                    <input type="number" class="form-control" name="idProduct" id="field_idProduct"
+                           formControlName="idProduct"/>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" for="field_name">Name</label>
@@ -34,12 +34,17 @@
                     <input type="number" class="form-control" name="quantity" id="field_quantity"
                            formControlName="quantity"/>
                 </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                           formControlName="description"/>
+                </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" for="field_seller">Seller</label>
-                    <select class="form-control" id="field_seller" name="seller" formControlName="seller">
+                    <label class="form-control-label" for="field_user">User</label>
+                    <select class="form-control" id="field_user" name="user" formControlName="user">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="userOption.id === editForm.get('seller').value?.id ? editForm.get('seller').value : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
+                        <option [ngValue]="userOption.id === editForm.get('user').value?.id ? editForm.get('user').value : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
                     </select>
                 </div>
             </div>

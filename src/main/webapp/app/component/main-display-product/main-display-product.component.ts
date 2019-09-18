@@ -1,6 +1,6 @@
 import { SearchService } from './../../search/search.service';
 import { Component, Input, OnInit } from '@angular/core';
-import { Product, IProduct } from '../../shared/model/product.model';
+import { Product } from '../../shared/model/product.model';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { HttpResponse } from '@angular/common/http';
 
@@ -26,8 +26,5 @@ export class MainDisplayProductComponent implements OnInit {
         this.product = { name: 'error', price: 0 };
       }
     });
-
-    this.search.testSearchFunctions('admin');
-    console.log(this.search.user, this.search.orderLines);
   }
 }

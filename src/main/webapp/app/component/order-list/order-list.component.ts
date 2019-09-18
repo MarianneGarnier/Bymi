@@ -17,8 +17,8 @@ export class OrderListComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    this.orderLine = new OrderLine(1, 2, null, OrderLineStatus.RESERVED, new Product(1, 1, 'orderLine1', 15, 'null', 2, null, null));
-    this.orderLine2 = new OrderLine(2, 1, null, OrderLineStatus.EXPIRED, new Product(2, 2, 'orderLine2', 85, 'null', 1, null, null));
+    this.orderLine = new OrderLine(1, 2, null, OrderLineStatus.RESERVED, new Product(1, 1, 'product1', 15, 'null', 2, null, null));
+    this.orderLine2 = new OrderLine(2, 1, null, OrderLineStatus.EXPIRED, new Product(2, 2, 'product2', 85, 'null', 1, null, null));
 
     this.order = new PlacedOrder(56, null, 56, OrderStatus.BASKET, [this.orderLine, this.orderLine2], null);
     this.order2 = new PlacedOrder(58, null, 58, OrderStatus.IN_TRANSIT, [this.orderLine2, this.orderLine, this.orderLine], null);

@@ -17,12 +17,15 @@ import { BymiAppRoutingModule } from './app-routing.module';
 import { BymiHomeModule } from './home/home.module';
 import { BymiAccountModule } from './account/account.module';
 import { BymiEntityModule } from './entities/entity.module';
+import { BasketModule } from 'app/component/basket/basket.module';
 import * as moment from 'moment';
+// jhipster-needle-angular-add-module-import JHipster will add new module here
 import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ErrorComponent } from './layouts';
 import { MainDisplayProductModule } from './component/main-display-product/main-display-product.module';
 import { OrderListModule } from './component/order-list/order-list.module';
 import { SmallDisplayProductComponent } from './component/small-display-product/small-display-product.component';
-
+import { SearchResultComponent } from './component/search-result/search-result.component';
+import { SearchResultModule } from './component/search-result/search-result.module';
 @NgModule({
   imports: [
     BrowserModule,
@@ -38,8 +41,10 @@ import { SmallDisplayProductComponent } from './component/small-display-product/
     BymiAccountModule,
     // jhipster-needle-angular-add-module JHipster will add new module here
     BymiEntityModule,
+    BasketModule,
     MainDisplayProductModule,
     OrderListModule,
+    SearchResultModule,
     BymiAppRoutingModule
   ],
   declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent],
