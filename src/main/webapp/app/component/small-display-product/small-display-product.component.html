@@ -6,12 +6,12 @@
         <h3 class="card-title">
             {{product.name}} <span class="badge badge-light float-right">{{product.price}}€</span>
         </h3>
-        <p class="card-text"> ome quick example text to build on the card title and make up the bulk of the card's content</p>
+        <p class="card-text">{{product.description}}</p>
     <ul class="list-group list-group-flush">
         <li class="list-group-item">{{product.quantity}} restants</li>
     </ul>
     <div class="card-body">
-        <a href="/viewProduct/{{product.productId}}" class="card-link">Détails</a>
+        <a href="/viewProduct/{{product.idProduct}}" class="card-link">Détails</a>
         <a href="#" class="card-link">Ajouter au Panier</a>
     </div>
 </div>
