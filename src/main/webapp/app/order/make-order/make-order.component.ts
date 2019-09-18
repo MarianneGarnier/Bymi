@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Account, AccountService } from 'app/core';
+import { Account, AccountService, IUser, User } from 'app/core';
+import { SearchService } from './../../search/search.service';
+import { HttpResponse } from '@angular/common/http';
+import { IProduct } from 'app/shared/model/product.model';
 
 // TODO ajouter entitée panier de l'utilisateur
 
@@ -11,8 +14,14 @@ import { Account, AccountService } from 'app/core';
 })
 export class MakeOrderComponent implements OnInit {
   account: Account;
+  user: User;
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router, private accountService: AccountService) {}
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private accountService: AccountService,
+    private searchService: SearchService
+  ) {}
 
   ngOnInit() {
     //this.user = UserService.;
@@ -20,6 +29,10 @@ export class MakeOrderComponent implements OnInit {
 
     this.accountService.identity().then((account: Account) => {
       this.account = account;
+      const promise: Promise<HttpResponse<IProduct>> = this.searchService.findUserByLogin(this.account.login);
+      promise.then((res: HttpResponse<IProduct>) => {
+        this.user = res.body;
+      });
     });
   }
 
