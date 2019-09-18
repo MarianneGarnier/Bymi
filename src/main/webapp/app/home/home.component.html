@@ -8,12 +8,8 @@
 
         <div [ngSwitch]="isAuthenticated()">
             <div class="alert alert-success" *ngSwitchCase="true">
-                <span id="home-logged-message" *ngIf="account"
-                > You are logged in as user "{{account.login}}". </span></div>
-            <div>
-                <button (click)="test()"></button>
+                <span id="home-logged-message" *ngIf="account"> You are logged in as user "{{account.login}}". </span>
             </div>
-
             <div class="alert alert-warning" *ngSwitchCase="false">
                 <span>If you want to </span>
                 <a class="alert-link" (click)="login()">sign in</a><span>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").</span>
@@ -40,9 +36,8 @@
                 Twitter</a></li>
         </ul>
 
-        Ici <a routerLink="/order/summary">cliquez</a>
         <p>
-            Ici  <a routerLink="/orderList">cliquez</a>
+            Ici <a routerLink="/orderList">cliquez</a>
         </p>
 
         <jhi-list-display-product></jhi-list-display-product>

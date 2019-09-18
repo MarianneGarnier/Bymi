@@ -1,7 +1,8 @@
 import { SearchService } from './../../search/search.service';
 import { Component, Input, OnInit } from '@angular/core';
-import { Product } from '../../shared/model/product.model';
+import { Product, IProduct } from '../../shared/model/product.model';
 import { ActivatedRoute, Router, Params } from '@angular/router';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'jhi-main-display-product',
@@ -11,21 +12,22 @@ import { ActivatedRoute, Router, Params } from '@angular/router';
 export class MainDisplayProductComponent implements OnInit {
   public product: Product;
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router, private search: SearchService) {}
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, public search: SearchService) {}
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => {
       const todoId: string = params['id'];
-      console.log(Number(todoId), '');
-      console.log(parseInt(todoId), 'parseint');
-
       if (todoId) {
-        // TODO: service product by ID
-        this.product = this.search.findProductById(Number(todoId));
-        console.info(this.product.name, Number(todoId));
+        const promise: Promise<HttpResponse<IProduct>> = this.search.findProductById(Number(todoId));
+        promise.then((res: HttpResponse<IProduct>) => {
+          this.product = res.body;
+        });
       } else {
         this.product = { name: 'error', price: 0 };
       }
     });
+
+    this.search.testSearchFunctions('admin');
+    console.log(this.search.user, this.search.orderLine);
   }
 }

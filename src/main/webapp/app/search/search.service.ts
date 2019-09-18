@@ -1,19 +1,21 @@
-import { IUser } from './../core/user/user.model';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Injectable, Input } from '@angular/core';
+import { Observable } from 'rxjs';
+import { SERVER_API_URL } from '../app.constants';
 import { JhiAlertService } from 'ng-jhipster';
 import { ProductService } from 'app/entities/product';
 import { OrderLineService } from 'app/entities/order-line';
 import { User, UserService } from 'app/core';
 import { IProduct, Product } from 'app/shared/model/product.model';
 import { IOrderLine, OrderLine } from 'app/shared/model/order-line.model';
+import { IUser } from 'app/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SearchService {
   @Input() id: number;
-  public product: Product;
+  public product: Product = null;
   public orderLine: OrderLine[];
   public user: User;
 
