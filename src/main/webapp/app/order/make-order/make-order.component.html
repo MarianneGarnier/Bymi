@@ -1,16 +1,81 @@
 <!-- TODO à editer (contient panier utilisateur) -->
 
-<p>
-<h2>Passer la commande</h2>
+<div *ngIf="userAuthenticated; else userNotAuthenticated">
+    <h2>Passer la commande</h2>
 
-<ol>
-    <li>Adresse de livraison</li>
-    <div>TODO</div>
-    <li>Mode de paiement</li>
-    <div>TODO</div>
-    <li>Vérification et validation de votre commande</li>
-    <div>TODO</div>
-</ol>
-<!-- todo ajouter composant affichage panier ici -->
-<button type="button" (click)="confirmOrder();">Confirmer</button>
+    <form (ngSubmit)="submitOrder()" #editTaskForm="ngForm">
+        <ol>
+            <li>Adresse de livraison</li>
+
+            <div class="form-group">
+                <label for="firstName">Prénom :</label>
+                <input type="text" class="form-control"
+                       id="firstName" name="firstName"
+                       [(ngModel)]="account.firstName" ngModel>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Nom :</label>
+                <input type="text" class="form-control"
+                       id="lastName" name="lastName"
+                       [(ngModel)]="account.lastName" ngModel>
+            </div>
+            <div class="form-group">
+                <label for="address">Prénom :</label>
+                <input type="text" class="form-control"
+                       id="address" name="address"
+                       placeholder="1 Rue de Lille, 38000 Grenoble">
+            </div>
+
+            <li>Mode de paiement</li>
+
+            <div class="form-group">
+                <label for="paymentType">Type de paiement</label>
+                <SELECT name="paymentType" id="paymentType" size="1">
+                    <OPTION>VISA
+                    <OPTION>MasterCard
+                    <OPTION>GB
+                </SELECT>
+            </div>
+            <div class="form-group">
+                <label for="cardNumber">Numéro de la carte :</label>
+                <input type="text" class="form-control"
+                       id="cardNumber" name="cardNumber"
+                       placeholder="1234 5678 9012 3456 ">
+            </div>
+            <div class="form-group">
+                <label for="cardOwner">Nom du titulaire de la carte :</label>
+                <input type="text" class="form-control"
+                       id="cardOwner" name="cardOwner"
+                       placeholder="JEAN DUPOND">
+            </div>
+            <div class="form-group">
+                <label for="cardExpirationMonth">Date d'expiration :</label>
+                <SELECT name="cardExpirationMonth" id="cardExpirationMonth" size="1">
+                    <OPTION *ngFor="let month of this.months"> {{month}}
+                </SELECT>
+            </div>
+            <div class="form-group">
+                <label for="cardExpirationYear">Date d'expiration :</label>
+                <SELECT name="cardExpirationYear" id="cardExpirationYear" size="1">
+                    <OPTION *ngFor="let year of this.years"> {{year}}
+                </SELECT>
+            </div>
+            <div class="form-group">
+                <label for="cryptogram">Cryptogramme visuel :</label>
+                <input type="text" class="form-control"
+                       id="cryptogram" name="cryptogram"
+                       placeholder="000">
+            </div>
+
+            <li>Vérification et validation de votre commande</li>
+
+        </ol>
+
+        <button type="submit">Acheter</button>
+    </form>
+</div>
+
+<ng-template #userNotAuthenticated>
+    <h2>Veuillez vous connecter pour passer votre commande</h2>
+</ng-template>
 
