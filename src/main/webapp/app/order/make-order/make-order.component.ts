@@ -16,8 +16,8 @@ export class MakeOrderComponent implements OnInit {
   account: Account;
   user: User;
   userAuthenticated = false;
-  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-  years: [2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030];
+  months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  years = [2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -27,9 +27,9 @@ export class MakeOrderComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    //this.user = UserService.;
+    // this.user = UserService.;
     console.log('Hello ngOnInit makeordercomponent');
-    //make order available iff the user is authenticated
+    // make order available iff the user is authenticated
     this.accountService.identity().then((account: Account) => {
       this.account = account;
       this.userAuthenticated = this.accountService.isAuthenticated();
