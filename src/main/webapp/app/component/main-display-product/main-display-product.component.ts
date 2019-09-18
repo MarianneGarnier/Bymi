@@ -28,6 +28,6 @@ export class MainDisplayProductComponent implements OnInit {
     });
 
     this.search.testSearchFunctions('admin');
-    console.log(this.search.user, this.search.orderLine);
+    console.log(this.search.user, this.search.orderLines);
   }
 }
