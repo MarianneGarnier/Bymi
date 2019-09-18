@@ -24,6 +24,8 @@ import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent
 import { MainDisplayProductModule } from './component/main-display-product/main-display-product.module';
 import { OrderListModule } from './component/order-list/order-list.module';
 import { SmallDisplayProductComponent } from './component/small-display-product/small-display-product.component';
+import { SearchResultComponent } from './component/search-result/search-result.component';
+import { SearchResultModule } from './component/search-result/search-result.module';
 @NgModule({
   imports: [
     BrowserModule,
@@ -42,6 +44,7 @@ import { SmallDisplayProductComponent } from './component/small-display-product/
     BasketModule,
     MainDisplayProductModule,
     OrderListModule,
+    SearchResultModule,
     BymiAppRoutingModule
   ],
   declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent],
