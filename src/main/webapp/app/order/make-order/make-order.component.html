@@ -38,9 +38,7 @@
                 <label for="paymentType">Type de paiement </label>
                 <br>
                 <SELECT name="paymentType" id="paymentType" size="1">
-                    <OPTION>VISA
-                    <OPTION>MasterCard
-                    <OPTION>GB
+                    <OPTION *ngFor="let payment of payments ">{{payment}}
                 </SELECT>
             </div>
             <div class="form-group">
