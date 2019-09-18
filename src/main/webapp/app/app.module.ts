@@ -23,7 +23,7 @@ import * as moment from 'moment';
 import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ErrorComponent } from './layouts';
 import { MainDisplayProductModule } from './component/main-display-product/main-display-product.module';
 import { OrderListModule } from './component/order-list/order-list.module';
-import { SmallDisplayProductComponent } from './component/small-display-product/small-display-product.component';
+import { CreateProductModule } from 'app/selling/create-product/create-product.module';
 @NgModule({
   imports: [
     BrowserModule,
@@ -42,7 +42,8 @@ import { SmallDisplayProductComponent } from './component/small-display-product/
     BasketModule,
     MainDisplayProductModule,
     OrderListModule,
-    BymiAppRoutingModule
+    BymiAppRoutingModule,
+    CreateProductModule
   ],
   declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent],
   providers: [
