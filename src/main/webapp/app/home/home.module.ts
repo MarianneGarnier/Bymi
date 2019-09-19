@@ -9,8 +9,8 @@ import { DisplayOrderLineComponent } from '../component/display-order-line/displ
 
 @NgModule({
   imports: [BymiSharedModule, RouterModule.forChild([HOME_ROUTE])],
-  declarations: [HomeComponent, ListDisplayProductComponent, SmallDisplayProductComponent],
-  exports: [SmallDisplayProductComponent],
+  declarations: [HomeComponent],
+  exports: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class BymiHomeModule {}
