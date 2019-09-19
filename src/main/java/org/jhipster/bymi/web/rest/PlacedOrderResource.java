@@ -104,6 +104,17 @@ public class PlacedOrderResource {
     }
 
     /**
+     * {@code GET  /placed-orders/my-orders}
+     *
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the placedOrder, or with status {@code 404 (Not Found)}.
+     */
+    @GetMapping("/placed-orders/my-orders")
+    public List<PlacedOrder> getPlacedOrderByCurrentUser() {
+        log.debug("REST request to get PlacedOrder : {}");
+        return placedOrderRepository.findByUserIsCurrentUser();
+    }
+
+    /**
      * {@code DELETE  /placed-orders/:id} : delete the "id" placedOrder.
      *
      * @param id the id of the placedOrder to delete.

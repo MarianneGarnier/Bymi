@@ -18,6 +18,12 @@ export class PlacedOrderService {
 
   constructor(protected http: HttpClient) {}
 
+  getOrdersByCurrentUser(): Observable<EntityArrayResponseType> {
+    return this.http
+      .get<IPlacedOrder[]>(`${this.resourceUrl}/my-orders`, { observe: 'response' })
+      .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
+  }
+
   create(placedOrder: IPlacedOrder): Observable<EntityResponseType> {
     const copy = this.convertDateFromClient(placedOrder);
     return this.http

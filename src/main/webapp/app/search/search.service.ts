@@ -1,4 +1,4 @@
-import { filter, map } from 'rxjs/operators';
+import { PlacedOrder } from './../shared/model/placed-order.model';
 import { IUser } from './../core/user/user.model';
 import { HttpClient, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Injectable, Input } from '@angular/core';
@@ -10,7 +10,6 @@ import { Product, IProduct } from 'app/shared/model/product.model';
 import { OrderLine, IOrderLine } from 'app/shared/model/order-line.model';
 import { PlacedOrderService } from 'app/entities/placed-order';
 import { IPlacedOrder } from 'app/shared/model/placed-order.model';
-import { pipe } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +18,7 @@ export class SearchService {
   @Input() id: number;
   public product: Product;
   public orderLines: OrderLine[];
+  public placedOrders: PlacedOrder[];
   public user: User;
 
   constructor(
@@ -29,6 +29,13 @@ export class SearchService {
     private userService: UserService,
     private placedOrderService: PlacedOrderService
   ) {}
+
+  // Lines to put in any method that wants to call this one. Do not forget arguments and to rename the service if necessary
+  // let promise: Promise< HttpResponse< IProduct>> = this .createProduct();
+  // promise .then((res:  HttpResponse< IProduct>) => action if ok, error => {console.error(JSON.stringify(error));});
+  public createProduct(product: IProduct): Promise<HttpResponse<IProduct>> {
+    return this.productService.create(product).toPromise();
+  }
 
   // Lines to put in any method that wants to call this one. Do not forget arguments and to rename the service if necessary
   // let promise: Promise<HttpResponse<IProduct>> = this.search.findProductById();
@@ -45,6 +52,20 @@ export class SearchService {
   }
 
   // Lines to put in any method that wants to call this one. Do not forget arguments and to rename the service if necessary
+  // let promise: Promise< HttpResponse< IOrderLine>> = this .createOrderLine();
+  // promise .then((res:  HttpResponse< IOrderLine>) => action if ok, error => {console.error(JSON.stringify(error));});
+  public createOrderLine(orderLine: OrderLine): Promise<HttpResponse<IOrderLine>> {
+    return this.orderLineService.create(orderLine).toPromise();
+  }
+
+  // Lines to put in any method that wants to call this one. Do not forget arguments and to rename the service if necessary
+  // let promise: Promise< HttpResponse< IOrderLine>> = this .createOrderLine();
+  // promise .then((res:  HttpResponse< IOrderLine>) => action if ok, error => {console.error(JSON.stringify(error));});
+  public updateOrderLine(orderLine: OrderLine): Promise<HttpResponse<IOrderLine>> {
+    return this.orderLineService.update(orderLine).toPromise();
+  }
+
+  // Lines to put in any method that wants to call this one. Do not forget arguments and to rename the service if necessary
   // let promise: Promise<HttpResponse<IOrderLine[]>> = this.search.getAllOrderLines();
   // promise.then((res: HttpResponse<IOrderLine[]>) => this.orderLines = res.body);
   public getAllOrderLines(): Promise<HttpResponse<IOrderLine[]>> {
@@ -52,17 +73,24 @@ export class SearchService {
   }
 
   // Lines to put in any method that wants to call this one. Do not forget arguments and to rename the service if necessary
-  // let promise: Promise< HttpResponse< IPlacedOrder[]>> = this.search.findOrdersByUser();
-  // promise.then((res: Promise< HttpResponse< IPlacedOrder[]>> => this.placedOrders = res.body);
-  public findOrdersByUser(user: User): Promise<HttpResponse<IPlacedOrder[]>> {
-    return this.placedOrderService.query('user=' + user).toPromise();
+  // let promise: Promise< HttpResponse< IPlacedOrder>> = this .createPlacedOrder();
+  // promise .then((res:  HttpResponse< IPlacedOrder>) => action if ok, error => {console.error(JSON.stringify(error));});
+  public createPlacedOrder(placedOrder: PlacedOrder): Promise<HttpResponse<IPlacedOrder>> {
+    return this.placedOrderService.create(placedOrder).toPromise();
   }
 
   // Lines to put in any method that wants to call this one. Do not forget arguments and to rename the service if necessary
-  // let promise: Promise< HttpResponse< IProduct>> = this .createProduct(null);
-  // promise .then((res:  HttpResponse< IProduct>) => action if ok, error => {console.error(JSON.stringify(error));});
-  public createProduct(product: IProduct): Promise<HttpResponse<IProduct>> {
-    return this.productService.create(product).toPromise();
+  // let promise: Promise< HttpResponse< IPlacedOrder>> = this .updatePlacedOrder();
+  // promise .then((res:  HttpResponse< IPlacedOrder>) => action if ok, error => {console.error(JSON.stringify(error));});
+  public updatePlacedOrder(placedOrder: PlacedOrder): Promise<HttpResponse<IPlacedOrder>> {
+    return this.placedOrderService.update(placedOrder).toPromise();
+  }
+
+  // Lines to put in any method that wants to call this one. Do not forget arguments and to rename the service if necessary
+  // let promise: Promise< HttpResponse< IPlacedOrder[]>> = this.search.findOrdersByUser();
+  // promised.then((res:  HttpResponse< IPlacedOrder[]>) => this.placedOrders = res.body);
+  public findOrdersByUser(user: User): Promise<HttpResponse<IPlacedOrder[]>> {
+    return this.placedOrderService.getOrdersByCurrentUser().toPromise();
   }
 
   // Lines to put in any method that wants to call this one. Do not forget arguments and to rename the service if necessary
@@ -70,6 +98,13 @@ export class SearchService {
   // promise.then((res: HttpResponse<IUser>) => this.user = res.body);
   public findUserByLogin(login: string): Promise<HttpResponse<IUser>> {
     return this.userService.find(login).toPromise();
+  }
+
+  public testquery(str: string) {
+    let promise: Promise<HttpResponse<IUser>> = this.findUserByLogin(str);
+    promise.then((res: HttpResponse<IUser>) => (this.user = res.body));
+    let promised: Promise<HttpResponse<IPlacedOrder[]>> = this.findOrdersByUser(this.user);
+    promised.then((res: HttpResponse<IPlacedOrder[]>) => (this.placedOrders = res.body));
   }
 
   protected onError(errorMessage: string) {
