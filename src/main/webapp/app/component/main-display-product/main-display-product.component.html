@@ -1,15 +1,14 @@
-
 <div class="row">
     <div class="card card-primary col-sm-5">
         <div class="card-block text-center">
             <img src="https://photos.maty.com/0652342/V1/400/collier-argent-925.jpeg">
         </div>
     </div>
-    <div class="col-sm-7 h-100">
+    <div *ngIf="product" class="col-sm-7 h-100">
         <h1>
-            {{product.name}}        <span class="badge badge-light">{{product.price}}€</span>
+            {{product.name}} <span class="badge badge-light">{{product.price}}€</span>
         </h1>
-        <p>{{production.description}}</p>
+        <p>{{product.description}}</p>
         <button class="btn btn-outline-primary align-bottom">Ajouter au panier</button>
     </div>
 </div>

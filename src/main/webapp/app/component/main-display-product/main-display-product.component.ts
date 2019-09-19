@@ -1,6 +1,6 @@
 import { SearchService } from './../../search/search.service';
-import { Component, Input, OnInit } from '@angular/core';
-import { Product } from '../../shared/model/product.model';
+import { Component, OnInit } from '@angular/core';
+import { Product, IProduct } from '../../shared/model/product.model';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { HttpResponse } from '@angular/common/http';
 
