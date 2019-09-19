@@ -60,7 +60,7 @@ export class SearchService {
 
   // Lines to put in any method that wants to call this one. Do not forget arguments and to rename the service if necessary
   // let promise: Promise< HttpResponse< IProduct>> = this .createProduct(null);
-  // promise .then((res:  HttpResponse< IProduct>) => res.body, error => {console.error(JSON.stringify(error));});
+  // promise .then((res:  HttpResponse< IProduct>) => action if ok, error => {console.error(JSON.stringify(error));});
   public createProduct(product: IProduct): Promise<HttpResponse<IProduct>> {
     return this.productService.create(product).toPromise();
   }
@@ -70,31 +70,6 @@ export class SearchService {
   // promise.then((res: HttpResponse<IUser>) => this.user = res.body);
   public findUserByLogin(login: string): Promise<HttpResponse<IUser>> {
     return this.userService.find(login).toPromise();
-  }
-
-  /*
-   * Just a test, delete when not needed
-   */
-  public testSearchFunctions(login: string) {
-    const promiseU: Promise<HttpResponse<IUser>> = this.findUserByLogin(login);
-    promiseU.then((res: HttpResponse<IUser>) => {
-      this.user = res.body;
-      console.log(this.user);
-    });
-    const promiseO: Promise<HttpResponse<IOrderLine[]>> = this.getAllOrderLines();
-    promiseO.then((res: HttpResponse<IOrderLine[]>) => {
-      this.orderLines = res.body;
-      console.log(this.orderLines);
-    });
-    const promiseC: Promise<HttpResponse<IProduct>> = this.createProduct(null);
-    promiseC.then(
-      (res: HttpResponse<IProduct>) => {
-        res.body;
-      },
-      error => {
-        console.error(JSON.stringify(error));
-      }
-    );
   }
 
   protected onError(errorMessage: string) {
