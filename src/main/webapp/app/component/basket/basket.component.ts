@@ -25,7 +25,7 @@ export class BasketComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    //this.user = this.userService.getUserWithAuthorities().get();
+    // this.user = this.userService.getUserWithAuthorities().get();
     this.getBasket(this.user);
   }
 

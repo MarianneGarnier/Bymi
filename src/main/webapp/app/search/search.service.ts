@@ -90,7 +90,6 @@ export class SearchService {
     promiseC.then(
       (res: HttpResponse<IProduct>) => {
         res.body;
-        console.log('sqdsdq');
       },
       error => {
         console.error(JSON.stringify(error));

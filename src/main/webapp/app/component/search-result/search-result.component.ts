@@ -17,7 +17,7 @@ export class SearchResultComponent implements OnInit {
       const type: string = params['type'];
       if (type) {
         if (type === 'product') {
-          //TODO: service products by termes de recherche
+          // TODO: service products by termes de recherche
           this.products = [new Product(1, 1, 'test01', 15, 'null', 2, null, null)];
         } else {
           this.products = [{ name: 'error', price: 0 }];
