@@ -50,7 +50,9 @@ export class MakeOrderComponent implements OnInit {
         // Récupération des placedOrder de la BDD
         if (firstResponsePlacerOrderService.status === 200) {
           this.allPlacedOrderOfUser = firstResponsePlacerOrderService.body.filter(placedOrder => {
-            return placedOrder.orderId === this.user.id && placedOrder.status === OrderStatus.BASKET; // Récupération du basket de l'utilisateur actuel
+            if (placedOrder.user !== null) {
+              return placedOrder.user.id === this.user.id && placedOrder.status === OrderStatus.BASKET; // Récupération du basket de l'utilisateur actuel
+            }
           });
           this.userCurrentBasket = this.allPlacedOrderOfUser[this.allPlacedOrderOfUser.length - 1];
           this.userCurrentBasket.status = OrderStatus.PAID; // Mise à jour de son statut (le panier devient une commande)
