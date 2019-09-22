@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Account, AccountService, User } from 'app/core';
 import { SearchService } from './../../search/search.service';
-import { HttpResponse } from '@angular/common/http';
-import { IProduct } from 'app/shared/model/product.model';
 import { OrderStatus, PlacedOrder } from 'app/shared/model/placed-order.model';
 import { OrderLine } from 'app/shared/model/order-line.model';
 import { PlacedOrderService } from 'app/entities/placed-order';
@@ -39,31 +37,27 @@ export class MakeOrderComponent implements OnInit {
     this.accountService.identity().then((account: Account) => {
       this.account = account;
       this.userAuthenticated = this.accountService.isAuthenticated();
+      this.placedOrderService.getOrdersByCurrentUser().subscribe(firstResponsePlacedOrderService => {
+        // Récupération des placedOrder de la BDD
+        if (firstResponsePlacedOrderService.status === 200) {
+          this.allPlacedOrderOfUser = firstResponsePlacedOrderService.body.filter(placedOrder => {
+            if (placedOrder.user !== null) {
+              return placedOrder.status === OrderStatus.BASKET; // Récupération du basket de l'utilisateur actuel
+            }
+          });
+          this.userCurrentBasket = this.allPlacedOrderOfUser[this.allPlacedOrderOfUser.length - 1];
+        }
+      });
     });
   }
 
   submitOrder() {
-    const promise: Promise<HttpResponse<IProduct>> = this.searchService.findUserByLogin(this.account.login);
-    promise.then((res: HttpResponse<IProduct>) => {
-      this.user = res.body; // Récupération de l'utilisateur connecté (qui passe sa commande)
-      this.placedOrderService.query().subscribe(firstResponsePlacerOrderService => {
-        // Récupération des placedOrder de la BDD
-        if (firstResponsePlacerOrderService.status === 200) {
-          this.allPlacedOrderOfUser = firstResponsePlacerOrderService.body.filter(placedOrder => {
-            if (placedOrder.user !== null) {
-              return placedOrder.user.id === this.user.id && placedOrder.status === OrderStatus.BASKET; // Récupération du basket de l'utilisateur actuel
-            }
-          });
-          this.userCurrentBasket = this.allPlacedOrderOfUser[this.allPlacedOrderOfUser.length - 1];
-          this.userCurrentBasket.status = OrderStatus.PAID; // Mise à jour de son statut (le panier devient une commande)
-          this.placedOrderService.update(this.userCurrentBasket).subscribe(secondResponsePlacedOrderService => {
-            if (secondResponsePlacedOrderService.status === 200) {
-              // Mise à jour dans la base
-              this.router.navigateByUrl('order/confirmation'); // Succès
-            }
-          });
-        }
-      });
+    this.userCurrentBasket.status = OrderStatus.PAID; // Mise à jour de son statut (le panier devient une commande)
+    this.placedOrderService.update(this.userCurrentBasket).subscribe(secondResponsePlacedOrderService => {
+      if (secondResponsePlacedOrderService.status === 200) {
+        // Mise à jour dans la base
+        this.router.navigateByUrl('order/confirmation'); // Succès
+      }
     });
   }
 }
