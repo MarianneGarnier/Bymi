@@ -15,7 +15,7 @@ export class ListDisplayProductComponent implements OnInit {
   constructor(private search: SearchService) {}
 
   ngOnInit() {
-    let promise: Promise<HttpResponse<IProduct[]>> = this.search.getAllProducts();
+    const promise: Promise<HttpResponse<IProduct[]>> = this.search.getAllProducts();
     promise.then((res: HttpResponse<IProduct[]>) => (this.products = res.body));
 
     if (this.products == null || this.products.length < 1) {
