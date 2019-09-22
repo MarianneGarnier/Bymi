@@ -58,7 +58,7 @@ export class MainDisplayProductComponent implements OnInit {
           await this.search.getCurrentUser().then((res: HttpResponse<IUser>) => res.body)
         );
       }
-      let orderLineToAdd: OrderLine = new OrderLine(undefined, 1, moment(), OrderLineStatus.RESERVED, this.product, basket);
+      const orderLineToAdd: OrderLine = new OrderLine(undefined, 1, moment(), OrderLineStatus.RESERVED, this.product, basket);
       this.search.createOrderLine(orderLineToAdd);
       basket.orderlines.push(orderLineToAdd);
       this.search.updatePlacedOrder(basket);
