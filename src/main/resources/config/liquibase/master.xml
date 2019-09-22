@@ -15,11 +15,11 @@
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190917151729_added_entity_Product.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190911133743_added_entity_PlacedOrder.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190911133744_added_entity_OrderLine.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190911155739_added_entity_PlacedOrder.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190911155740_added_entity_OrderLine.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20190917151729_added_entity_constraints_Product.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190911133743_added_entity_constraints_PlacedOrder.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190911133744_added_entity_constraints_OrderLine.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190911155739_added_entity_constraints_PlacedOrder.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190911155740_added_entity_constraints_OrderLine.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>
