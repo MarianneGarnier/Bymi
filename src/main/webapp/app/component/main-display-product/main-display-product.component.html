@@ -9,6 +9,6 @@
             {{product.name}} <span class="badge badge-light">{{product.price}}€</span>
         </h1>
         <p>{{product.description}}</p>
-        <button class="btn btn-outline-primary align-bottom">Ajouter au panier</button>
+        <button (click)="ajoutDeProduitAuPanier()" class="btn btn-outline-primary align-bottom">Ajouter au panier</button>
     </div>
 </div>
