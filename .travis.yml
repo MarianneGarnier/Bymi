@@ -51,4 +51,4 @@ branches:
   only:
     - master
     - featureOrder
-    - frontendintegration
+    - frontendIntegration
