@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-    @Query("select product from Product product where product.seller.login = ?#{principal.username}")
-    List<Product> findBySellerIsCurrentUser();
+    @Query("select product from Product product where product.user.login = ?#{principal.username}")
+    List<Product> findByUserIsCurrentUser();
 
 }

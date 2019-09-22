@@ -1,6 +1,5 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
 import { BymiSharedModule } from 'app/shared';
 import { HOME_ROUTE, HomeComponent } from './';
 import { SmallDisplayProductComponent } from 'app/component/small-display-product/small-display-product.component';
@@ -10,7 +9,8 @@ import { DisplayOrderLineComponent } from '../component/display-order-line/displ
 
 @NgModule({
   imports: [BymiSharedModule, RouterModule.forChild([HOME_ROUTE])],
-  declarations: [HomeComponent, ListDisplayProductComponent, SmallDisplayProductComponent],
+  declarations: [HomeComponent],
+  exports: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class BymiHomeModule {}

@@ -1,10 +1,8 @@
-<p>
-    Product List:
-</p>
-<div *ngIf="products && products.length > 0; else noProducts">
-    <div *ngFor="let productLoop of products">
+<div *ngIf="products && products.length > 0; else noProducts" class="container-fluid">
+    <div class="row">
+    <div *ngFor="let productLoop of products"  class="col-sm-3">
         <jhi-small-display-product [product]="productLoop"></jhi-small-display-product>
+    </div>
     </div>
 </div>
 <ng-template #noProducts>No product found</ng-template>
-

@@ -20,12 +20,13 @@ export class ProductUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
-    productId: [],
+    idProduct: [],
     name: [],
     price: [],
     imagePath: [],
     quantity: [],
-    seller: []
+    description: [],
+    user: []
   });
 
   constructor(
@@ -53,12 +54,13 @@ export class ProductUpdateComponent implements OnInit {
   updateForm(product: IProduct) {
     this.editForm.patchValue({
       id: product.id,
-      productId: product.productId,
+      idProduct: product.idProduct,
       name: product.name,
       price: product.price,
       imagePath: product.imagePath,
       quantity: product.quantity,
-      seller: product.seller
+      description: product.description,
+      user: product.user
     });
   }
 
@@ -80,12 +82,13 @@ export class ProductUpdateComponent implements OnInit {
     return {
       ...new Product(),
       id: this.editForm.get(['id']).value,
-      productId: this.editForm.get(['productId']).value,
+      idProduct: this.editForm.get(['idProduct']).value,
       name: this.editForm.get(['name']).value,
       price: this.editForm.get(['price']).value,
       imagePath: this.editForm.get(['imagePath']).value,
       quantity: this.editForm.get(['quantity']).value,
-      seller: this.editForm.get(['seller']).value
+      description: this.editForm.get(['description']).value,
+      user: this.editForm.get(['user']).value
     };
   }
 

@@ -23,7 +23,7 @@ describe('Service Tests', () => {
       service = injector.get(ProductService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new Product(0, 0, 'AAAAAAA', 0, 'AAAAAAA', 0);
+      elemDefault = new Product(0, 0, 'AAAAAAA', 0, 'AAAAAAA', 0, 'AAAAAAA');
     });
 
     describe('Service methods', () => {
@@ -59,11 +59,12 @@ describe('Service Tests', () => {
       it('should update a Product', async () => {
         const returnedFromService = Object.assign(
           {
-            productId: 1,
+            idProduct: 1,
             name: 'BBBBBB',
             price: 1,
             imagePath: 'BBBBBB',
-            quantity: 1
+            quantity: 1,
+            description: 'BBBBBB'
           },
           elemDefault
         );
@@ -81,11 +82,12 @@ describe('Service Tests', () => {
       it('should return a list of Product', async () => {
         const returnedFromService = Object.assign(
           {
-            productId: 1,
+            idProduct: 1,
             name: 'BBBBBB',
             price: 1,
             imagePath: 'BBBBBB',
-            quantity: 1
+            quantity: 1,
+            description: 'BBBBBB'
           },
           elemDefault
         );

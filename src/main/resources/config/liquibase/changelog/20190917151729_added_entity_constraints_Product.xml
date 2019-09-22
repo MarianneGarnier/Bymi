@@ -6,11 +6,11 @@
     <!--
         Added the constraints for entity Product.
     -->
-    <changeSet id="20190911133742-2" author="jhipster">
+    <changeSet id="20190917151729-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="seller_id"
+        <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="product"
-                                 constraintName="fk_product_seller_id"
+                                 constraintName="fk_product_user_id"
                                  referencedColumnNames="id"
                                  referencedTableName="jhi_user"/>
 

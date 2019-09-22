@@ -33,9 +33,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = BymiApp.class)
 public class ProductResourceIT {
 
-    private static final Integer DEFAULT_PRODUCT_ID = 1;
-    private static final Integer UPDATED_PRODUCT_ID = 2;
-    private static final Integer SMALLER_PRODUCT_ID = 1 - 1;
+    private static final Integer DEFAULT_ID_PRODUCT = 1;
+    private static final Integer UPDATED_ID_PRODUCT = 2;
+    private static final Integer SMALLER_ID_PRODUCT = 1 - 1;
 
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
@@ -50,6 +50,9 @@ public class ProductResourceIT {
     private static final Integer DEFAULT_QUANTITY = 1;
     private static final Integer UPDATED_QUANTITY = 2;
     private static final Integer SMALLER_QUANTITY = 1 - 1;
+
+    private static final String DEFAULT_DESCRIPTION = "AAAAAAAAAA";
+    private static final String UPDATED_DESCRIPTION = "BBBBBBBBBB";
 
     @Autowired
     private ProductRepository productRepository;
@@ -93,11 +96,12 @@ public class ProductResourceIT {
      */
     public static Product createEntity(EntityManager em) {
         Product product = new Product()
-            .productId(DEFAULT_PRODUCT_ID)
+            .idProduct(DEFAULT_ID_PRODUCT)
             .name(DEFAULT_NAME)
             .price(DEFAULT_PRICE)
             .imagePath(DEFAULT_IMAGE_PATH)
-            .quantity(DEFAULT_QUANTITY);
+            .quantity(DEFAULT_QUANTITY)
+            .description(DEFAULT_DESCRIPTION);
         return product;
     }
     /**
@@ -108,11 +112,12 @@ public class ProductResourceIT {
      */
     public static Product createUpdatedEntity(EntityManager em) {
         Product product = new Product()
-            .productId(UPDATED_PRODUCT_ID)
+            .idProduct(UPDATED_ID_PRODUCT)
             .name(UPDATED_NAME)
             .price(UPDATED_PRICE)
             .imagePath(UPDATED_IMAGE_PATH)
-            .quantity(UPDATED_QUANTITY);
+            .quantity(UPDATED_QUANTITY)
+            .description(UPDATED_DESCRIPTION);
         return product;
     }
 
@@ -136,11 +141,12 @@ public class ProductResourceIT {
         List<Product> productList = productRepository.findAll();
         assertThat(productList).hasSize(databaseSizeBeforeCreate + 1);
         Product testProduct = productList.get(productList.size() - 1);
-        assertThat(testProduct.getProductId()).isEqualTo(DEFAULT_PRODUCT_ID);
+        assertThat(testProduct.getIdProduct()).isEqualTo(DEFAULT_ID_PRODUCT);
         assertThat(testProduct.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testProduct.getPrice()).isEqualTo(DEFAULT_PRICE);
         assertThat(testProduct.getImagePath()).isEqualTo(DEFAULT_IMAGE_PATH);
         assertThat(testProduct.getQuantity()).isEqualTo(DEFAULT_QUANTITY);
+        assertThat(testProduct.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
     }
 
     @Test
@@ -174,11 +180,12 @@ public class ProductResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(product.getId().intValue())))
-            .andExpect(jsonPath("$.[*].productId").value(hasItem(DEFAULT_PRODUCT_ID)))
+            .andExpect(jsonPath("$.[*].idProduct").value(hasItem(DEFAULT_ID_PRODUCT)))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
             .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.doubleValue())))
             .andExpect(jsonPath("$.[*].imagePath").value(hasItem(DEFAULT_IMAGE_PATH.toString())))
-            .andExpect(jsonPath("$.[*].quantity").value(hasItem(DEFAULT_QUANTITY)));
+            .andExpect(jsonPath("$.[*].quantity").value(hasItem(DEFAULT_QUANTITY)))
+            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())));
     }
     
     @Test
@@ -192,11 +199,12 @@ public class ProductResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(product.getId().intValue()))
-            .andExpect(jsonPath("$.productId").value(DEFAULT_PRODUCT_ID))
+            .andExpect(jsonPath("$.idProduct").value(DEFAULT_ID_PRODUCT))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
             .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.doubleValue()))
             .andExpect(jsonPath("$.imagePath").value(DEFAULT_IMAGE_PATH.toString()))
-            .andExpect(jsonPath("$.quantity").value(DEFAULT_QUANTITY));
+            .andExpect(jsonPath("$.quantity").value(DEFAULT_QUANTITY))
+            .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()));
     }
 
     @Test
@@ -220,11 +228,12 @@ public class ProductResourceIT {
         // Disconnect from session so that the updates on updatedProduct are not directly saved in db
         em.detach(updatedProduct);
         updatedProduct
-            .productId(UPDATED_PRODUCT_ID)
+            .idProduct(UPDATED_ID_PRODUCT)
             .name(UPDATED_NAME)
             .price(UPDATED_PRICE)
             .imagePath(UPDATED_IMAGE_PATH)
-            .quantity(UPDATED_QUANTITY);
+            .quantity(UPDATED_QUANTITY)
+            .description(UPDATED_DESCRIPTION);
 
         restProductMockMvc.perform(put("/api/products")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -235,11 +244,12 @@ public class ProductResourceIT {
         List<Product> productList = productRepository.findAll();
         assertThat(productList).hasSize(databaseSizeBeforeUpdate);
         Product testProduct = productList.get(productList.size() - 1);
-        assertThat(testProduct.getProductId()).isEqualTo(UPDATED_PRODUCT_ID);
+        assertThat(testProduct.getIdProduct()).isEqualTo(UPDATED_ID_PRODUCT);
         assertThat(testProduct.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testProduct.getPrice()).isEqualTo(UPDATED_PRICE);
         assertThat(testProduct.getImagePath()).isEqualTo(UPDATED_IMAGE_PATH);
         assertThat(testProduct.getQuantity()).isEqualTo(UPDATED_QUANTITY);
+        assertThat(testProduct.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
     }
 
     @Test

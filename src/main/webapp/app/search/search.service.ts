@@ -1,14 +1,14 @@
+import { IUser } from './../core/user/user.model';
 import { HttpClient, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Injectable, Input } from '@angular/core';
-import { Observable } from 'rxjs';
-import { SERVER_API_URL } from '../app.constants';
 import { JhiAlertService } from 'ng-jhipster';
 import { ProductService } from 'app/entities/product';
 import { OrderLineService } from 'app/entities/order-line';
-import { User, UserService } from 'app/core';
-import { IProduct, Product } from 'app/shared/model/product.model';
-import { IOrderLine, OrderLine } from 'app/shared/model/order-line.model';
-import { IUser } from 'app/core';
+import { UserService, User } from 'app/core';
+import { Product, IProduct } from 'app/shared/model/product.model';
+import { OrderLine, IOrderLine } from 'app/shared/model/order-line.model';
+import { PlacedOrderService } from 'app/entities/placed-order';
+import { IPlacedOrder } from 'app/shared/model/placed-order.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ import { IUser } from 'app/core';
 export class SearchService {
   @Input() id: number;
   public product: Product = null;
-  public orderLine: OrderLine[];
+  public orderLines: OrderLine[];
   public user: User;
 
   constructor(
@@ -24,7 +24,8 @@ export class SearchService {
     protected jhiAlertService: JhiAlertService,
     private productService: ProductService,
     private orderLineService: OrderLineService,
-    private userService: UserService
+    private userService: UserService,
+    private placedOrderService: PlacedOrderService
   ) {}
 
   // Lines to put in any method that wants to call this one. Do not forget arguments and to rename the service if necessary
@@ -35,10 +36,31 @@ export class SearchService {
   }
 
   // Lines to put in any method that wants to call this one. Do not forget arguments and to rename the service if necessary
-  // let promise: Promise<HttpResponse<IOrderLine[]>> = this.search.getOrdersByUser();
-  // promise.then((res: HttpResponse<IOrderLine[]>) => this.orderLine = res.body);
-  public getOrdersByUser(user: User): Promise<HttpResponse<IOrderLine[]>> {
-    return this.orderLineService.query('user:' + user).toPromise();
+  // let promise: Promise< HttpResponse< IProduct[]>> = this.search.getAllProducts();
+  // promise.then((res: Promise< HttpResponse< IProduct[]>>) => this.products = res.body);
+  public getAllProducts(requestOption?: any): Promise<HttpResponse<IProduct[]>> {
+    return this.productService.query(requestOption).toPromise();
+  }
+
+  // Lines to put in any method that wants to call this one. Do not forget arguments and to rename the service if necessary
+  // let promise: Promise<HttpResponse<IOrderLine[]>> = this.search.getAllOrderLines();
+  // promise.then((res: HttpResponse<IOrderLine[]>) => this.orderLines = res.body);
+  public getAllOrderLines(): Promise<HttpResponse<IOrderLine[]>> {
+    return this.orderLineService.query().toPromise();
+  }
+
+  // Lines to put in any method that wants to call this one. Do not forget arguments and to rename the service if necessary
+  // let promise: Promise< HttpResponse< IPlacedOrder[]>> = this.search.findOrdersByUser();
+  // promise.then((res: Promise< HttpResponse< IPlacedOrder[]>> => this.placedOrders = res.body);
+  public findOrdersByUser(user: User): Promise<HttpResponse<IPlacedOrder[]>> {
+    return this.placedOrderService.query('user=' + user).toPromise();
+  }
+
+  // Lines to put in any method that wants to call this one. Do not forget arguments and to rename the service if necessary
+  // let promise: Promise< HttpResponse< IProduct>> = this .createProduct(null);
+  // promise .then((res:  HttpResponse< IProduct>) => action if ok, error => {console.error(JSON.stringify(error));});
+  public createProduct(product: IProduct): Promise<HttpResponse<IProduct>> {
+    return this.productService.create(product).toPromise();
   }
 
   // Lines to put in any method that wants to call this one. Do not forget arguments and to rename the service if necessary
@@ -46,14 +68,6 @@ export class SearchService {
   // promise.then((res: HttpResponse<IUser>) => this.user = res.body);
   public findUserByLogin(login: string): Promise<HttpResponse<IUser>> {
     return this.userService.find(login).toPromise();
-  }
-
-  /*
-   * Just a test, delete when not needed
-   */
-  public testSearchFunctions(login: string) {
-    this.findUserByLogin(login);
-    this.getOrdersByUser(this.user);
   }
 
   protected onError(errorMessage: string) {
