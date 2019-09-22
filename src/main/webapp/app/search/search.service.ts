@@ -116,7 +116,7 @@ export class SearchService {
   }
 
   public testquery(str: string) {
-    let promise: Promise<HttpResponse<IUser>> = this.findUserByLogin(str);
+    const promise: Promise<HttpResponse<IUser>> = this.findUserByLogin(str);
     promise.then((res: HttpResponse<IUser>) => (this.user = res.body));
     const promised: Promise<HttpResponse<IPlacedOrder[]>> = this.findOrdersByUser();
     promised.then((res: HttpResponse<IPlacedOrder[]>) => (this.placedOrders = res.body));
