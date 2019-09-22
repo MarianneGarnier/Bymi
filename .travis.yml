@@ -49,4 +49,5 @@ notifications:
 # safelist
 branches:
   only:
-    - frontendIntegration
+    - master
+    - featureOrder

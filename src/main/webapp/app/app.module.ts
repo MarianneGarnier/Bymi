@@ -23,6 +23,9 @@ import * as moment from 'moment';
 import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ErrorComponent } from './layouts';
 import { MainDisplayProductModule } from './component/main-display-product/main-display-product.module';
 import { OrderListModule } from './component/order-list/order-list.module';
+import { SmallDisplayProductComponent } from './component/small-display-product/small-display-product.component';
+import { MakeOrderModule } from 'app/order/make-order/make-order.module';
+import { SearchResultComponent } from './component/search-result/search-result.component';
 import { SearchResultModule } from './component/search-result/search-result.module';
 import { ProfileModule } from './component/profile/profile.module';
 import { CreateProductModule } from 'app/selling/create-product/create-product.module';
@@ -43,6 +46,7 @@ import { CreateProductModule } from 'app/selling/create-product/create-product.m
     // jhipster-needle-angular-add-module JHipster will add new module here
     BymiEntityModule,
     BasketModule,
+    MakeOrderModule,
     MainDisplayProductModule,
     OrderListModule,
     SearchResultModule,
