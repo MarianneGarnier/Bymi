@@ -1,9 +1,10 @@
 entity Product {
-	productId Integer
+	idProduct Integer
 	name String
     price Double
     imagePath String
     quantity Integer
+    description String
 }
 
 entity PlacedOrder{
@@ -30,7 +31,7 @@ relationship ManyToOne {
 	PlacedOrder{user} to User{orders}
 }
 relationship ManyToOne {
-	Product{seller} to User{products}
+	Product{user} to User{products}
 }
 relationship OneToMany {
 	Product{orderlines} to OrderLine{product}
