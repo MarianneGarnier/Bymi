@@ -1,11 +1,10 @@
 package org.jhipster.bymi.web.rest;
 
+import io.github.jhipster.web.util.HeaderUtil;
+import io.github.jhipster.web.util.ResponseUtil;
 import org.jhipster.bymi.domain.PlacedOrder;
 import org.jhipster.bymi.repository.PlacedOrderRepository;
 import org.jhipster.bymi.web.rest.errors.BadRequestAlertException;
-
-import io.github.jhipster.web.util.HeaderUtil;
-import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -81,7 +79,6 @@ public class PlacedOrderResource {
     /**
      * {@code GET  /placed-orders} : get all the placedOrders.
      *
-
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of placedOrders in body.
      */
     @GetMapping("/placed-orders")
@@ -102,6 +99,18 @@ public class PlacedOrderResource {
         Optional<PlacedOrder> placedOrder = placedOrderRepository.findById(id);
         return ResponseUtil.wrapOrNotFound(placedOrder);
     }
+
+    /**
+     * {@code GET  /placed-orders/my-orders}
+     *
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the placedOrder, or with status {@code 404 (Not Found)}.
+     */
+    @GetMapping("/placed-orders/my-orders")
+    public List<PlacedOrder> getPlacedOrderByCurrentUser() {
+        log.debug("REST request to get PlacedOrder : {}");
+        return placedOrderRepository.findByUserIsCurrentUser();
+    }
+
 
     /**
      * {@code DELETE  /placed-orders/:id} : delete the "id" placedOrder.

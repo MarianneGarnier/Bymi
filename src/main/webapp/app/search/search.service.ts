@@ -1,4 +1,3 @@
-import { filter, map } from 'rxjs/operators';
 import { IUser } from './../core/user/user.model';
 import { HttpClient, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Injectable, Input } from '@angular/core';
@@ -10,14 +9,13 @@ import { Product, IProduct } from 'app/shared/model/product.model';
 import { OrderLine, IOrderLine } from 'app/shared/model/order-line.model';
 import { PlacedOrderService } from 'app/entities/placed-order';
 import { IPlacedOrder } from 'app/shared/model/placed-order.model';
-import { pipe } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SearchService {
   @Input() id: number;
-  public product: Product;
+  public product: Product = null;
   public orderLines: OrderLine[];
   public user: User;
 

@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import * as moment from 'moment';
-import { DATE_FORMAT } from 'app/shared/constants/input.constants';
 import { map } from 'rxjs/operators';
 
 import { SERVER_API_URL } from 'app/app.constants';
@@ -17,6 +16,12 @@ export class PlacedOrderService {
   public resourceUrl = SERVER_API_URL + 'api/placed-orders';
 
   constructor(protected http: HttpClient) {}
+
+  getOrdersByCurrentUser(): Observable<EntityArrayResponseType> {
+    return this.http
+      .get<IPlacedOrder[]>(`${this.resourceUrl}/my-orders`, { observe: 'response' })
+      .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
+  }
 
   create(placedOrder: IPlacedOrder): Observable<EntityResponseType> {
     const copy = this.convertDateFromClient(placedOrder);
