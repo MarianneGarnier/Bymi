@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../core';
+import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { JhiEventManager } from 'ng-jhipster';
+
+import { Account, AccountService, LoginModalService } from 'app/core';
 
 @Component({
   selector: 'jhi-profil',
@@ -7,27 +11,25 @@ import { User } from '../../core';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  user: User;
-  date: String;
-  constructor() {}
+  account: Account;
+  constructor(
+    private accountService: AccountService,
+    private loginModalService: LoginModalService,
+    private eventManager: JhiEventManager
+  ) {}
 
   ngOnInit() {
-    this.user = new User(
-      1,
-      'sacha56',
-      'Sacha',
-      'Cargenl',
-      'sacha@outlook.fr',
-      null,
-      null,
-      null,
-      null,
-      new Date(2002, 5, 12),
-      null,
-      null,
-      '1234'
-    );
-    let tempDate = this.user.createdDate;
-    this.date = tempDate.getDay() + '/' + tempDate.getMonth() + '/' + tempDate.getFullYear();
+    this.accountService.identity().then((account: Account) => {
+      this.account = account;
+    });
+    this.registerAuthenticationSuccess();
+  }
+
+  registerAuthenticationSuccess() {
+    this.eventManager.subscribe('authenticationSuccess', message => {
+      this.accountService.identity().then(account => {
+        this.account = account;
+      });
+    });
   }
 }
