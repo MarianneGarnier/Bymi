@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IUser, UserService } from 'app/core';
+import { AccountService, IUser, UserService } from 'app/core';
 import { JhiAlertService } from 'ng-jhipster';
 import { ProductService } from 'app/entities/product';
 import { ActivatedRoute } from '@angular/router';
@@ -19,6 +19,7 @@ export class CreateProductComponent implements OnInit {
 
   users: IUser[];
 
+  account: any;
   editForm = this.fb.group({
     id: [],
     idProduct: [],
@@ -35,10 +36,14 @@ export class CreateProductComponent implements OnInit {
     protected productService: ProductService,
     protected userService: UserService,
     protected activatedRoute: ActivatedRoute,
+    protected accountService: AccountService,
     private fb: FormBuilder
   ) {}
 
   ngOnInit() {
+    this.accountService.identity().then(account => {
+      this.account = account;
+    });
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ product }) => {
       this.updateForm(product);
@@ -83,13 +88,13 @@ export class CreateProductComponent implements OnInit {
     return {
       ...new Product(),
       id: this.editForm.get(['id']).value,
-      idProduct: this.editForm.get(['idProduct']).value,
+      idProduct: this.editForm.get(['id']).value,
       name: this.editForm.get(['name']).value,
       price: this.editForm.get(['price']).value,
       imagePath: this.editForm.get(['imagePath']).value,
       quantity: this.editForm.get(['quantity']).value,
-      description: this.editForm.get(['description']).value,
-      user: this.editForm.get(['user']).value
+      description: this.editForm.get(['description']).value
+      //user: this.accountService;
     };
   }
 
