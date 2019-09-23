@@ -17,18 +17,19 @@ import { BymiAppRoutingModule } from './app-routing.module';
 import { BymiHomeModule } from './home/home.module';
 import { BymiAccountModule } from './account/account.module';
 import { BymiEntityModule } from './entities/entity.module';
-import { BasketModule } from 'app/component/basket/basket.module';
 import * as moment from 'moment';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { ErrorComponent, FooterComponent, JhiMainComponent, NavbarComponent, PageRibbonComponent } from './layouts';
-import { MainDisplayProductModule } from './component/main-display-product/main-display-product.module';
-import { OrderListModule } from './component/order-list/order-list.module';
 import { SmallDisplayProductComponent } from './component/small-display-product/small-display-product.component';
 import { MakeOrderModule } from 'app/order/make-order/make-order.module';
-
 import { SearchResultComponent } from './component/search-result/search-result.component';
 import { SearchResultModule } from './component/search-result/search-result.module';
 import { ProfileModule } from './component/profile/profile.module';
+import { CreateProductModule } from 'app/selling/create-product/create-product.module';
+import { BasketModule } from './component/basket/basket.module';
+import { MainDisplayProductModule } from './component/main-display-product/main-display-product.module';
+import { OrderListModule } from './component/order-list/order-list.module';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -50,7 +51,8 @@ import { ProfileModule } from './component/profile/profile.module';
     OrderListModule,
     SearchResultModule,
     BymiAppRoutingModule,
-    ProfileModule
+    ProfileModule,
+    CreateProductModule
   ],
   declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent],
   providers: [

@@ -4,7 +4,6 @@ import { RouterModule } from '@angular/router';
 import { PROFILE_ROUTE } from './profile.route';
 import { ProfileComponent } from './profile.component';
 import { BymiSharedModule } from '../../shared';
-
 @NgModule({
   imports: [BymiSharedModule, CommonModule, RouterModule.forChild([PROFILE_ROUTE])],
   declarations: [ProfileComponent],
