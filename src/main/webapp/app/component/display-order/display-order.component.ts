@@ -34,7 +34,7 @@ export class DisplayOrderComponent implements OnInit {
         break;
       }
       case OrderStatus.IN_TRANSIT: {
-        this.status = 'Commande en cour de livraison';
+        this.status = 'Commande en cours de livraison';
         this.labelType = 'badge badge-info';
         break;
       }

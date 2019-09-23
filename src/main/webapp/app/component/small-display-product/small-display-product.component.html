@@ -4,14 +4,14 @@
         <img  class="card-img-top" src="https://photos.maty.com/0652342/V1/400/collier-argent-925.jpeg" height="200" width="200">
 
         <h3 class="card-title">
-            {{product.name}} <span class="badge badge-light float-right">{{product.price}}€</span>
+            {{product.name}}
         </h3>
         <p class="card-text">{{product.description}}</p>
     <ul class="list-group list-group-flush">
-        <li class="list-group-item">{{product.quantity}} restants</li>
+        <li class="list-group-item"><h6 class="float-left">{{product.quantity}} restants</h6> <h4><span class="badge badge-light float-right">{{product.price}}€</span></h4></li>
     </ul>
     <div class="card-body">
-        <a href="/viewProduct/{{product.idProduct}}" class="card-link btn btn-primary" width="40%">Détails</a>
-        <a href="#" class="card-link btn btn-secondary" width="40%">Ajouter au Panier</a>
+        <a href="/viewProduct/{{product.idProduct}}" class="card-link" width="40%">Détails</a>
+        <a href="#" class="card-link" width="40%">Ajouter au Panier</a>
     </div>
 </div>
