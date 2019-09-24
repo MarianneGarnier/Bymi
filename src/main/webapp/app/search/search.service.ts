@@ -74,6 +74,13 @@ export class SearchService {
   }
 
   // Lines to put in any method that wants to call this one. Do not forget arguments and to rename the service if necessary
+  // let promise: Promise< HttpResponse< IOrderLine[]>> = this .getOrderLinesFromOrderId();
+  // promise .then((res:  HttpResponse< IOrderLine[]>) => action if ok, error => {console.error(JSON.stringify(error));});
+  public getOrderLinesFromOrderId(id: number): Promise<HttpResponse<IOrderLine[]>> {
+    return this.placedOrderService.getOrderLinesFromOrder(id).toPromise();
+  }
+
+  // Lines to put in any method that wants to call this one. Do not forget arguments and to rename the service if necessary
   // let promise: Promise<HttpResponse<IOrderLine[]>> = this.search.getAllOrderLines();
   // promise.then((res: HttpResponse<IOrderLine[]>) => this.orderLines = res.body);
   public getAllOrderLines(): Promise<HttpResponse<IOrderLine[]>> {

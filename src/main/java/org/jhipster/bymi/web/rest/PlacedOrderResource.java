@@ -3,6 +3,7 @@ package org.jhipster.bymi.web.rest;
 import org.jhipster.bymi.domain.PlacedOrder;
 import org.jhipster.bymi.repository.PlacedOrderRepository;
 import org.jhipster.bymi.web.rest.errors.BadRequestAlertException;
+import org.jhipster.bymi.domain.OrderLine;
 
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import java.util.Arrays;
+import java.util.Set;
 import java.util.List;
 import java.util.Optional;
 
@@ -125,4 +128,16 @@ public class PlacedOrderResource {
         placedOrderRepository.deleteById(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
     }
+
+    /**
+     * {@code GET  /placed-orders/my-orders}
+     *
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the placedOrder, or with status {@code 404 (Not Found)}.
+     */
+    @GetMapping("/placed-orders/{id}/get-orderlines")
+    public Set<OrderLine> getOrderLinesFromOrder(@PathVariable Long id) {
+        log.debug("REST request to get OrderLines : {}", id);
+        return this.placedOrderRepository.getPlacedOrderById(id).getOrderlines();
+    }
+
 }

@@ -16,4 +16,6 @@ public interface PlacedOrderRepository extends JpaRepository<PlacedOrder, Long> 
     @Query("select placedOrder from PlacedOrder placedOrder where placedOrder.user.login = ?#{principal.username}")
     List<PlacedOrder> findByUserIsCurrentUser();
 
+    @Query("select placedOrder from PlacedOrder placedOrder where placedOrder.id = ?1")
+    PlacedOrder getPlacedOrderById(long id);
 }

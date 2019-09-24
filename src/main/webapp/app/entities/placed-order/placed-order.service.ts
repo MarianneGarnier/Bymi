@@ -7,6 +7,7 @@ import { map } from 'rxjs/operators';
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared';
 import { IPlacedOrder } from 'app/shared/model/placed-order.model';
+import { IOrderLine } from 'app/shared/model/order-line.model';
 
 type EntityResponseType = HttpResponse<IPlacedOrder>;
 type EntityArrayResponseType = HttpResponse<IPlacedOrder[]>;
@@ -16,6 +17,12 @@ export class PlacedOrderService {
   public resourceUrl = SERVER_API_URL + 'api/placed-orders';
 
   constructor(protected http: HttpClient) {}
+
+  getOrderLinesFromOrder(id: number): Observable<HttpResponse<IOrderLine[]>> {
+    return this.http
+      .get<IOrderLine[]>(`${this.resourceUrl}/${id}/get-orderlines`, { observe: 'response' })
+      .pipe(map((res: HttpResponse<IOrderLine[]>) => this.convertOrderLineDateArrayFromServer(res)));
+  }
 
   getOrdersByCurrentUser(): Observable<EntityArrayResponseType> {
     return this.http
@@ -72,6 +79,14 @@ export class PlacedOrderService {
     if (res.body) {
       res.body.forEach((placedOrder: IPlacedOrder) => {
         placedOrder.date = placedOrder.date != null ? moment(placedOrder.date) : null;
+      });
+    }
+    return res;
+  }
+  protected convertOrderLineDateArrayFromServer(res: HttpResponse<IOrderLine[]>): HttpResponse<IOrderLine[]> {
+    if (res.body) {
+      res.body.forEach((orderLine: IOrderLine) => {
+        orderLine.date = orderLine.date != null ? moment(orderLine.date) : null;
       });
     }
     return res;
