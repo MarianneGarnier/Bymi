@@ -52,6 +52,8 @@ export class MainDisplayProductComponent implements OnInit {
         }
       });
       orderLineToAdd = new OrderLine(undefined, 1, moment(), OrderLineStatus.RESERVED, this.product, basket);
+      const orderlines: OrderLine[] = [];
+      orderlines.push(orderLineToAdd);
       if (basket === null) {
         await this.search.createOrderLine(orderLineToAdd);
         basket = new PlacedOrder(
@@ -59,7 +61,7 @@ export class MainDisplayProductComponent implements OnInit {
           moment(),
           Math.round(Math.random() * 10000),
           OrderStatus.BASKET,
-          orderLineToAdd,
+          orderlines,
           await this.search.getCurrentUser().then((res: HttpResponse<IUser>) => res.body)
         );
         await this.search.createPlacedOrder(basket);
