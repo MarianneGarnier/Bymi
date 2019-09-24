@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { HttpResponse } from '@angular/common/http';
 import { PlacedOrderService } from 'app/entities/placed-order';
-import { PlacedOrder, IPlacedOrder, OrderStatus } from 'app/shared/model/placed-order.model';
-import { OrderLine, OrderLineStatus } from 'app/shared/model/order-line.model';
-import { Product } from 'app/shared/model/product.model';
-import { filter, map } from 'rxjs/operators';
+import { IPlacedOrder, OrderStatus, PlacedOrder } from 'app/shared/model/placed-order.model';
+import { OrderLine } from 'app/shared/model/order-line.model';
 import { JhiAlertService } from 'ng-jhipster';
-import { UserService, User } from 'app/core';
+import { User, UserService } from 'app/core';
+import { SearchService } from 'app/search/search.service';
 
 @Component({
   selector: 'jhi-basket',
@@ -16,12 +15,13 @@ import { UserService, User } from 'app/core';
 export class BasketComponent implements OnInit {
   private user: User;
   private orderLine1: OrderLine;
-  public order: PlacedOrder;
+  public order: PlacedOrder = null;
 
   constructor(
     protected jhiAlertService: JhiAlertService,
     private placedOrderService: PlacedOrderService,
-    private userService: UserService
+    private userService: UserService,
+    private search: SearchService
   ) {}
 
   ngOnInit() {
@@ -30,7 +30,13 @@ export class BasketComponent implements OnInit {
   }
 
   getBasket(user: User) {
-    this.orderLine1 = new OrderLine(1, 2, null, OrderLineStatus.RESERVED, new Product(1, 1, 'orderLine1', 15, 'null', 2, null, null));
-    this.order = new PlacedOrder(56, null, 56, OrderStatus.BASKET, [this.orderLine1, this.orderLine1], null);
+    let placedOrders: PlacedOrder[] = [];
+    const promise: Promise<HttpResponse<IPlacedOrder[]>> = this.search.findOrdersByUser(user);
+    promise.then((res: HttpResponse<IPlacedOrder[]>) => (placedOrders = res.body));
+    for (const order of placedOrders) {
+      if (order.status === OrderStatus.BASKET) {
+        this.order = order;
+      }
+    }
   }
 }
