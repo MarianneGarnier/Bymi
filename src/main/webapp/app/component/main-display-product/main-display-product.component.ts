@@ -1,3 +1,4 @@
+import { IOrderLine } from './../../shared/model/order-line.model';
 import { IUser } from './../../core/user/user.model';
 import { BASKET_ROUTE } from './../basket/basket.route';
 import { SearchService } from './../../search/search.service';
@@ -33,11 +34,13 @@ export class MainDisplayProductComponent implements OnInit {
       }
     });
   }
+
   // verifier produit dispo, creer orderline, ajouter ol à placed order, s'il existe, sinon le créer aussi, mettre à jour le produit
   async ajoutDeProduitAuPanier() {
     let productFromdDB: Product;
     let orders: PlacedOrder[];
     let basket: PlacedOrder = null;
+    let orderLineToAdd: OrderLine = null;
     await this.search.findProductById(this.product.id).then((res: HttpResponse<IProduct>) => {
       productFromdDB = res.body;
     });
@@ -48,20 +51,22 @@ export class MainDisplayProductComponent implements OnInit {
           basket = order;
         }
       });
+      orderLineToAdd = new OrderLine(undefined, 1, moment(), OrderLineStatus.RESERVED, this.product, basket);
       if (basket === null) {
+        await this.search.createOrderLine(orderLineToAdd);
         basket = new PlacedOrder(
           undefined,
           moment(),
           Math.round(Math.random() * 10000),
           OrderStatus.BASKET,
-          undefined,
+          orderLineToAdd,
           await this.search.getCurrentUser().then((res: HttpResponse<IUser>) => res.body)
         );
+        await this.search.createPlacedOrder(basket);
+      } else {
+        this.search.createOrderLine(orderLineToAdd).then((res: HttpResponse<IOrderLine>) => basket.orderlines.push(res.body));
+        await this.search.updatePlacedOrder(basket);
       }
-      const orderLineToAdd: OrderLine = new OrderLine(undefined, 1, moment(), OrderLineStatus.RESERVED, this.product, basket);
-      this.search.createOrderLine(orderLineToAdd);
-      basket.orderlines.push(orderLineToAdd);
-      this.search.updatePlacedOrder(basket);
       productFromdDB.quantity = productFromdDB.quantity - 1;
       this.search.updateProduct(productFromdDB);
     }
