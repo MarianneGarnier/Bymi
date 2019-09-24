@@ -1,7 +1,11 @@
 <div class="container">
-    <div class="row">
-        <div class="col-sm-10">
-        <jhi-display-order [order]='order'></jhi-display-order>
+    <div *ngIf="order !== null; else empty">
+        <a href="/order/summary" class="float-right">Régler votre panier</a>
+        <div class="row">
+            <div class="col-sm-10">
+            <jhi-display-order [order]='order'></jhi-display-order>
+            </div>
         </div>
     </div>
+    <ng-template #empty>Aucun produit dans votre panier</ng-template>
 </div>
