@@ -13,8 +13,6 @@ import { SearchService } from 'app/search/search.service';
   styleUrls: ['./basket.component.scss']
 })
 export class BasketComponent implements OnInit {
-  private user: User;
-  private orderLine1: OrderLine;
   public order: PlacedOrder = null;
 
   constructor(
@@ -25,13 +23,12 @@ export class BasketComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.user = this.userService.getUserWithAuthorities().get();
-    this.getBasket(this.user);
+    this.getBasket();
   }
 
-  getBasket(user: User) {
+  getBasket() {
     let placedOrders: PlacedOrder[] = [];
-    const promise: Promise<HttpResponse<IPlacedOrder[]>> = this.search.findOrdersByUser(user);
+    const promise: Promise<HttpResponse<IPlacedOrder[]>> = this.search.findOrdersByUser();
     promise.then((res: HttpResponse<IPlacedOrder[]>) => (placedOrders = res.body));
     for (const order of placedOrders) {
       if (order.status === OrderStatus.BASKET) {
