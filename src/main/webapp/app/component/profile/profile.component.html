@@ -1,3 +1,24 @@
-<p>
-  profil works!
-</p>
+<h1>Mon Profil</h1>
+<table class="table">
+    <tbody>
+    <tr>
+        <th>Pseudo</th>
+        <td>{{account.login}}</td>
+    </tr>
+    <tr>
+        <th>email</th>
+        <td>{{account.email}}</td>
+    </tr>
+    <tr>
+        <th>Nom</th>
+        <td>{{account.firstName}}</td>
+    </tr>
+    <tr>
+        <th>Prénom</th>
+        <td>{{account.lastName}}</td>
+    </tr>
+    </tbody>
+</table>
+<a type="button" class="btn btn-primary" href="createProduct">Créer un nouveau produit</a>
+<a type="button" class="btn btn-secondary" href="orderList">Mes commandes</a>
+<a type="button" class="btn btn-secondary" href="#">Changer de mot de passe</a>

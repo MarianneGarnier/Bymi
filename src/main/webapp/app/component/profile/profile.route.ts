@@ -2,7 +2,7 @@ import { Route } from '@angular/router';
 import { ProfileComponent } from './profile.component';
 
 export const PROFILE_ROUTE: Route = {
-  path: 'profile',
+  path: 'profil',
   component: ProfileComponent,
   data: {
     authorities: [],

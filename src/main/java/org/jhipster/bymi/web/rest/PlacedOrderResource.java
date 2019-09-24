@@ -81,7 +81,6 @@ public class PlacedOrderResource {
     /**
      * {@code GET  /placed-orders} : get all the placedOrders.
      *
-
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of placedOrders in body.
      */
     @GetMapping("/placed-orders")

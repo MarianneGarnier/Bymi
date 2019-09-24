@@ -14,6 +14,7 @@ export class OrderListComponent implements OnInit {
   orderLine2: OrderLine;
   order: PlacedOrder;
   order2: PlacedOrder;
+  order3: PlacedOrder;
   constructor() {}
 
   ngOnInit() {
@@ -22,6 +23,14 @@ export class OrderListComponent implements OnInit {
 
     this.order = new PlacedOrder(56, null, 56, OrderStatus.BASKET, [this.orderLine, this.orderLine2], null);
     this.order2 = new PlacedOrder(58, null, 58, OrderStatus.IN_TRANSIT, [this.orderLine2, this.orderLine, this.orderLine], null);
-    this.orderList = [this.order, this.order2];
+    this.order3 = new PlacedOrder(
+      45,
+      null,
+      45,
+      OrderStatus.DELIVERED,
+      [this.orderLine2, this.orderLine, this.orderLine, this.orderLine],
+      null
+    );
+    this.orderList = [this.order, this.order2, this.order3];
   }
 }
