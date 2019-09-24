@@ -1,11 +1,1 @@
-id;id_product;name;price;image_path;quantity;description
-1;37454;Directives application Home Loan Account;15601;Computer Practical Fresh Pants;60111;alarm
-2;2058;Producer;83244;red Chips Soap;30424;Albania web-readiness
-3;29122;Investment Account Steel;29214;24/7 Common bluetooth;19967;Cambridgeshire Mississippi
-4;4645;Credit Card Account Table Small Frozen Sausages;96563;cross-platform access;9767;Nakfa
-5;44015;Rubber Buckinghamshire Games;90932;Digitized invoice;31171;Costa Rica Mayotte
-6;18485;Facilitator;77513;Markets Chief;59789;National Awesome sky blue
-7;4522;software scale interactive;82873;compelling mission-critical;54269;Plastic
-8;80219;Small;98688;index orange;552;overriding
-9;70685;application quantify Unbranded Plastic Tuna;11586;IB Investment Account archive;6355;moratorium moratorium
-10;72960;withdrawal COM;47221;Frozen bus;76078;Idaho compress Avon
+id;id_product;name;price;image_path;quantity;description;user_id
