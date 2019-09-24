@@ -8,6 +8,7 @@ import { map } from 'rxjs/operators';
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared';
 import { IOrderLine } from 'app/shared/model/order-line.model';
+import { IPlacedOrder } from 'app/shared/model/placed-order.model';
 
 type EntityResponseType = HttpResponse<IOrderLine>;
 type EntityArrayResponseType = HttpResponse<IOrderLine[]>;
@@ -70,5 +71,11 @@ export class OrderLineService {
       });
     }
     return res;
+  }
+
+  getOrderLinesByCurrentUserBasket(): Observable<EntityArrayResponseType> {
+    return this.http
+      .get<IOrderLine[]>(`${this.resourceUrl}/my-current-orderlines`, { observe: 'response' })
+      .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
   }
 }

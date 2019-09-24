@@ -1,11 +1,10 @@
 package org.jhipster.bymi.web.rest;
 
+import io.github.jhipster.web.util.HeaderUtil;
+import io.github.jhipster.web.util.ResponseUtil;
 import org.jhipster.bymi.domain.OrderLine;
 import org.jhipster.bymi.repository.OrderLineRepository;
 import org.jhipster.bymi.web.rest.errors.BadRequestAlertException;
-
-import io.github.jhipster.web.util.HeaderUtil;
-import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -81,7 +79,6 @@ public class OrderLineResource {
     /**
      * {@code GET  /order-lines} : get all the orderLines.
      *
-
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of orderLines in body.
      */
     @GetMapping("/order-lines")
@@ -114,5 +111,16 @@ public class OrderLineResource {
         log.debug("REST request to delete OrderLine : {}", id);
         orderLineRepository.deleteById(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
+    }
+
+    /**
+     * {@code GET  /order-lines/my-current-orderlines}
+     *
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the placedOrder, or with status {@code 404 (Not Found)}.
+     */
+    @GetMapping("/order-lines/my-current-orderlines")
+    public List<OrderLine> getPlacedOrderByCurrentUser() {
+        log.debug("REST request to get Orderlines : {}");
+        return orderLineRepository.findByCurrentUserBasket();
     }
 }
