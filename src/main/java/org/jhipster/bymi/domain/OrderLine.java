@@ -1,5 +1,6 @@
 package org.jhipster.bymi.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -40,8 +41,8 @@ public class OrderLine implements Serializable {
     private Product product;
 
     @ManyToOne
-    @JsonIgnoreProperties("orderlines")
-    private PlacedOrder order;
+    @JsonIgnore
+    PlacedOrder order;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {

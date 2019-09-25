@@ -54,7 +54,7 @@ export class MainDisplayProductComponent implements OnInit {
           basket = order;
         }
       });
-      orderLineToAdd = new OrderLine(undefined, 1, moment(), OrderLineStatus.RESERVED, this.product, basket);
+      orderLineToAdd = new OrderLine(undefined, 1, moment(), OrderLineStatus.RESERVED, this.product, null);
 
       if (basket === null) {
         await this.search.createOrderLine(orderLineToAdd);

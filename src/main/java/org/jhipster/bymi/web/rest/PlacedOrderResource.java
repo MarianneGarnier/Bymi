@@ -1,5 +1,6 @@
 package org.jhipster.bymi.web.rest;
 
+import org.hibernate.*;
 import org.jhipster.bymi.domain.PlacedOrder;
 import org.jhipster.bymi.repository.PlacedOrderRepository;
 import org.jhipster.bymi.web.rest.errors.BadRequestAlertException;
