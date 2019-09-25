@@ -1,86 +1,91 @@
 <!-- TODO à editer (contient panier utilisateur) -->
-
-<div *ngIf="userAuthenticated; else userNotAuthenticated">
-    <h2>Passer la commande</h2>
-    <br>
-    <form ngNativeValidate (ngSubmit)="submitOrder()" #editTaskForm="ngForm">
-        <ol>
-            <b>
-                <li>Livraison</li>
-            </b>
-            <br>
-            <div class="form-group">
-                <label for="firstName">Prénom </label>
-                <input type="text" class="form-control"
-                       id="firstName" name="firstName"
-                       [(ngModel)]="account.firstName" ngModel required>
-            </div>
-            <div class="form-group">
-                <label for="lastName">Nom </label>
-                <input type="text" class="form-control"
-                       id="lastName" name="lastName"
-                       [(ngModel)]="account.lastName" ngModel required>
-            </div>
-            <div class="form-group">
-                <label for="address">Adresse </label>
-                <input type="text" class="form-control"
-                       id="address" name="address"
-                       placeholder="1 Rue de Lille, 38000 Grenoble" required>
-            </div>
-
-            <b>
-                <li>Paiement</li>
-            </b>
-            <br>
-
-            <div class="form-group">
-                <label for="paymentType">Type de paiement </label>
+<div>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div *ngIf="userAuthenticated; else userNotAuthenticated">
+                <h1>Passer la commande</h1>
                 <br>
-                <SELECT name="paymentType" id="paymentType" size="1">
-                    <OPTION *ngFor="let payment of payments ">{{payment}}
-                </SELECT>
-            </div>
-            <div class="form-group">
-                <label for="cardNumber">Numéro de la carte </label>
-                <input class="form-control" jhiNumeric numericType="number" type="text"
-                       id="cardNumber" name="cardNumber"
-                       placeholder="1234 5678 9012 3456" required minlength="16" maxlength="16">
-            </div>
-            <div class="form-group">
-                <label for="cardOwner">Nom du titulaire de la carte </label>
-                <input type="text" class="form-control"
-                       id="cardOwner" name="cardOwner"
-                       placeholder="JEAN DUPOND" required>
-            </div>
-            <div class="form-group">
-                <label for="cardExpirationMonth">Date d'expiration </label>
-                <br>
-                <SELECT name="cardExpirationMonth" id="cardExpirationMonth" size="1">
-                    <OPTION *ngFor="let month of months"> {{month}}
-                </SELECT>
-                <SELECT name="cardExpirationYear" id="cardExpirationYear" size="1">
-                    <OPTION *ngFor="let year of years"> {{year}}
-                </SELECT>
-            </div>
-            <div class="form-group">
-                <label for="cryptogram">Cryptogramme visuel </label>
-                <input jhiNumeric numericType="number" type="text" class="form-control"
-                       id="cryptogram" name="cryptogram"
-                       placeholder="123" required minlength="3" maxlength="3" ng-pattern="onlyNumbers">
-            </div>
-            <b>
-                <li>Récapitulatif de votre commande</li>
+                <form ngNativeValidate (ngSubmit)="submitOrder()" #editTaskForm="ngForm">
+                    <ol>
+                        <b>
+                            <li>Livraison</li>
+                        </b>
+                        <br>
+                        <div class="form-group">
+                            <label class="form-control-label" for="firstName">Prénom </label>
+                            <input type="text" class="form-control"
+                                   id="firstName" name="firstName"
+                                   [(ngModel)]="account.firstName" ngModel required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="lastName">Nom </label>
+                            <input type="text" class="form-control"
+                                   id="lastName" name="lastName"
+                                   [(ngModel)]="account.lastName" ngModel required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="address">Adresse </label>
+                            <input type="text" class="form-control"
+                                   id="address" name="address"
+                                   placeholder="1 Rue de Lille, 38000 Grenoble" required>
+                        </div>
 
-            </b>
-            <jhi-display-order [order]="userCurrentBasket"></jhi-display-order>
-            <br>
-        </ol>
+                        <b>
+                            <li>Paiement</li>
+                        </b>
+                        <br>
 
-        <button type="submit">Acheter</button>
-    </form>
+                        <div class="form-group">
+                            <label class="form-control-label" for="paymentType">Type de paiement </label>
+                            <br>
+                            <SELECT name="paymentType" id="paymentType" size="1">
+                                <OPTION *ngFor="let payment of payments ">{{payment}}
+                            </SELECT>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="cardNumber">Numéro de la carte </label>
+                            <input class="form-control" jhiNumeric numericType="number" type="text"
+                                   id="cardNumber" name="cardNumber"
+                                   placeholder="1234 5678 9012 3456" required minlength="16" maxlength="16">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="cardOwner">Nom du titulaire de la carte </label>
+                            <input type="text" class="form-control"
+                                   id="cardOwner" name="cardOwner"
+                                   placeholder="JEAN DUPOND" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="cardExpirationMonth">Date d'expiration </label>
+                            <br>
+                            <SELECT name="cardExpirationMonth" id="cardExpirationMonth" size="1">
+                                <OPTION *ngFor="let month of months"> {{month}}
+                            </SELECT>
+                            <SELECT name="cardExpirationYear" id="cardExpirationYear" size="1">
+                                <OPTION *ngFor="let year of years"> {{year}}
+                            </SELECT>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="cryptogram">Cryptogramme visuel </label>
+                            <input jhiNumeric numericType="number" type="text" class="form-control"
+                                   id="cryptogram" name="cryptogram"
+                                   placeholder="123" required minlength="3" maxlength="3" ng-pattern="onlyNumbers">
+                        </div>
+                        <b>
+                            <li>Récapitulatif de votre commande</li>
+
+                        </b>
+                        <jhi-display-order [order]="userCurrentBasket"></jhi-display-order>
+                        <br>
+                    </ol>
+
+                    <button type="submit" class="btn btn-primary">Acheter</button>
+                </form>
+            </div>
+
+            <ng-template #userNotAuthenticated>
+                <h2>Veuillez vous connecter pour passer votre commande</h2>
+            </ng-template>
+
+        </div>
+    </div>
 </div>
-
-<ng-template #userNotAuthenticated>
-    <h2>Veuillez vous connecter pour passer votre commande</h2>
-</ng-template>
-
