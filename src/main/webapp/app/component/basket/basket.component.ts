@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
-import { PlacedOrderService } from 'app/entities/placed-order';
 import { IPlacedOrder, OrderStatus, PlacedOrder } from 'app/shared/model/placed-order.model';
-import { OrderLine } from 'app/shared/model/order-line.model';
+import { IOrderLine, OrderLine } from 'app/shared/model/order-line.model';
 import { JhiAlertService } from 'ng-jhipster';
-import { User, UserService } from 'app/core';
 import { SearchService } from 'app/search/search.service';
 
 @Component({
@@ -13,30 +11,16 @@ import { SearchService } from 'app/search/search.service';
   styleUrls: ['./basket.component.scss']
 })
 export class BasketComponent implements OnInit {
-  private user: User;
-  private orderLine1: OrderLine;
   public order: PlacedOrder = null;
+  public orderLines: OrderLine[];
 
-  constructor(
-    protected jhiAlertService: JhiAlertService,
-    private placedOrderService: PlacedOrderService,
-    private userService: UserService,
-    private search: SearchService
-  ) {}
+  constructor(protected jhiAlertService: JhiAlertService, private search: SearchService) {}
 
   ngOnInit() {
-    // this.user = this.userService.getUserWithAuthorities().get();
-    this.getBasket(this.user);
+    this.getBasket();
   }
 
-  getBasket(user: User) {
-    let placedOrders: PlacedOrder[] = [];
-    const promise: Promise<HttpResponse<IPlacedOrder[]>> = this.search.findOrdersByUser(user);
-    promise.then((res: HttpResponse<IPlacedOrder[]>) => (placedOrders = res.body));
-    for (const order of placedOrders) {
-      if (order.status === OrderStatus.BASKET) {
-        this.order = order;
-      }
-    }
+  async getBasket() {
+    await this.search.getReservedOrderLinesOfCurrentUser().then((res: HttpResponse<OrderLine[]>) => (this.orderLines = res.body));
   }
 }

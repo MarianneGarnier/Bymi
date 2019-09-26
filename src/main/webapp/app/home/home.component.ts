@@ -1,3 +1,4 @@
+import { SearchService } from './../search/search.service';
 import { Component, OnInit } from '@angular/core';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
@@ -16,7 +17,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private accountService: AccountService,
     private loginModalService: LoginModalService,
-    private eventManager: JhiEventManager
+    private eventManager: JhiEventManager,
+    private search: SearchService
   ) {}
 
   ngOnInit() {
@@ -24,6 +26,7 @@ export class HomeComponent implements OnInit {
       this.account = account;
     });
     this.registerAuthenticationSuccess();
+    this.search.testquery('admin');
   }
 
   registerAuthenticationSuccess() {

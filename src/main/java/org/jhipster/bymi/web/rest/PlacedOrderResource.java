@@ -1,10 +1,13 @@
 package org.jhipster.bymi.web.rest;
 
-import io.github.jhipster.web.util.HeaderUtil;
-import io.github.jhipster.web.util.ResponseUtil;
+import org.hibernate.*;
 import org.jhipster.bymi.domain.PlacedOrder;
 import org.jhipster.bymi.repository.PlacedOrderRepository;
 import org.jhipster.bymi.web.rest.errors.BadRequestAlertException;
+import org.jhipster.bymi.domain.OrderLine;
+
+import io.github.jhipster.web.util.HeaderUtil;
+import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,6 +16,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+
+import java.util.Arrays;
+import java.util.Set;
 import java.util.List;
 import java.util.Optional;
 
@@ -110,7 +116,6 @@ public class PlacedOrderResource {
         log.debug("REST request to get PlacedOrder : {}");
         return placedOrderRepository.findByUserIsCurrentUser();
     }
-
 
     /**
      * {@code DELETE  /placed-orders/:id} : delete the "id" placedOrder.
