@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Account, AccountService, User } from 'app/core';
 import { SearchService } from './../../search/search.service';
 import { OrderStatus, PlacedOrder } from 'app/shared/model/placed-order.model';
-import { OrderLine } from 'app/shared/model/order-line.model';
 import { PlacedOrderService } from 'app/entities/placed-order';
 import { OrderLineService } from 'app/entities/order-line';
+import { DisplayOrderComponent } from 'app/component/display-order/display-order.component';
 
 @Component({
   selector: 'jhi-start-order',
@@ -13,6 +13,7 @@ import { OrderLineService } from 'app/entities/order-line';
   styleUrls: ['./make-order.component.scss']
 })
 export class MakeOrderComponent implements OnInit {
+  @ViewChild(DisplayOrderComponent, { static: false }) displayOrderComponent: DisplayOrderComponent;
   account: Account;
   user: User;
   userAuthenticated = false;
@@ -21,7 +22,6 @@ export class MakeOrderComponent implements OnInit {
   years = [2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030];
   allPlacedOrderOfUser: PlacedOrder[];
   userCurrentBasket: PlacedOrder;
-  allOrderLineOfCurrentBasket: OrderLine[];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -51,7 +51,8 @@ export class MakeOrderComponent implements OnInit {
           this.orderLineService.getOrderLinesByCurrentUserBasket().subscribe(firstResponseOrderLineService => {
             // Récupération des orderlines du panier actuel
             if (firstResponseOrderLineService.status === 200) {
-              this.allOrderLineOfCurrentBasket = firstResponseOrderLineService.body;
+              this.userCurrentBasket.orderlines = firstResponseOrderLineService.body;
+              this.displayOrderComponent.ngOnInit();
             }
           });
         }
