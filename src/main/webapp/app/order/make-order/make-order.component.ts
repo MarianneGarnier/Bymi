@@ -6,6 +6,8 @@ import { OrderStatus, PlacedOrder } from 'app/shared/model/placed-order.model';
 import { PlacedOrderService } from 'app/entities/placed-order';
 import { OrderLineService } from 'app/entities/order-line';
 import { DisplayOrderComponent } from 'app/component/display-order/display-order.component';
+import { OrderLine, OrderLineStatus } from 'app/shared/model/order-line.model';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'jhi-start-order',
@@ -64,6 +66,14 @@ export class MakeOrderComponent implements OnInit {
     this.userCurrentBasket.status = OrderStatus.PAID; // Mise à jour de son statut (le panier devient une commande)
     this.placedOrderService.update(this.userCurrentBasket).subscribe(secondResponsePlacedOrderService => {
       if (secondResponsePlacedOrderService.status === 200) {
+        //Designation des orderline comme indisponibles après le confirmation de l'achat
+        let orderLinesToModify: OrderLine[];
+        this.searchService.getReservedOrderLinesOfCurrentUser().then((res: HttpResponse<OrderLine[]>) => (orderLinesToModify = res.body));
+        orderLinesToModify.forEach(async (ol: OrderLine) => {
+          ol.status = OrderLineStatus.UNAVAILABLE;
+          await this.searchService.updateOrderLine(ol);
+        });
+
         // Mise à jour dans la base
         this.router.navigateByUrl('order/confirmation'); // Succès
       }
