@@ -40,8 +40,7 @@ public class OrderLine implements Serializable {
     @JsonIgnoreProperties("orderlines")
     private Product product;
 
-    @ManyToOne
-    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER)
     PlacedOrder order;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

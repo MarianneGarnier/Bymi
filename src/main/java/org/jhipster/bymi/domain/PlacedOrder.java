@@ -37,7 +37,7 @@ public class PlacedOrder implements Serializable {
     @Column(name = "status")
     private OrderStatus status;
 
-    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "order")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<OrderLine> orderlines = new HashSet<>();
 

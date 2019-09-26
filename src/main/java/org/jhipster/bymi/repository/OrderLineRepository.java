@@ -1,9 +1,10 @@
 package org.jhipster.bymi.repository;
 
+
 import org.jhipster.bymi.domain.OrderLine;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
-
+import java.util.List;
 
 /**
  * Spring Data  repository for the OrderLine entity.
@@ -12,4 +13,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface OrderLineRepository extends JpaRepository<OrderLine, Long> {
 
+  @Query("select orderline from OrderLine orderline where orderline.status = 'RESERVED' and orderline.order.user.login = ?#{principal.username}")
+  List<OrderLine> findReservedOrderLinesOfCurrentUser();
 }

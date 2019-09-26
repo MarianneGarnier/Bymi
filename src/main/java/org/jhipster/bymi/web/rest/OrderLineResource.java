@@ -90,6 +90,12 @@ public class OrderLineResource {
         return orderLineRepository.findAll();
     }
 
+    @GetMapping("/order-lines/reserved")
+    public List<OrderLine> getReservedOrderLinesOfCurrentUser() {
+        log.debug("REST request to get all OrderLines");
+        return orderLineRepository.findReservedOrderLinesOfCurrentUser();
+    }
+
     /**
      * {@code GET  /order-lines/:id} : get the "id" orderLine.
      *

@@ -18,6 +18,12 @@ export class OrderLineService {
 
   constructor(protected http: HttpClient) {}
 
+  getReservedOrderLinesOfCurrentUser(): Observable<EntityArrayResponseType> {
+    return this.http
+      .get<IOrderLine[]>(`${this.resourceUrl}/reserved/`, { observe: 'response' })
+      .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
+  }
+
   create(orderLine: IOrderLine): Observable<EntityResponseType> {
     const copy = this.convertDateFromClient(orderLine);
     return this.http

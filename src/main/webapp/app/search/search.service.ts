@@ -122,6 +122,10 @@ export class SearchService {
     return this.accountService.fetch().toPromise();
   }
 
+  public getReservedOrderLinesOfCurrentUser(): Promise<HttpResponse<OrderLine[]>> {
+    return this.orderLineService.getReservedOrderLinesOfCurrentUser().toPromise();
+  }
+
   public testquery(str: string) {
     const promise: Promise<HttpResponse<IUser>> = this.findUserByLogin(str);
     promise.then((res: HttpResponse<IUser>) => (this.user = res.body));

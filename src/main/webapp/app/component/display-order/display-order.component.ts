@@ -8,16 +8,16 @@ import { OrderLine } from '../../shared/model/order-line.model';
   styleUrls: ['./display-order.component.scss']
 })
 export class DisplayOrderComponent implements OnInit {
-  @Input() public order: PlacedOrder;
-  orderLines: OrderLine[];
+  @Input() public orderLines: OrderLine[];
   public stateBasket = OrderStatus.BASKET;
+  public order: PlacedOrder;
   status: String;
   labelType: String;
 
   constructor() {}
 
   ngOnInit() {
-    this.orderLines = this.order.orderlines;
+    this.order = this.orderLines[0].order;
     switch (this.order.status) {
       case OrderStatus.BASKET: {
         this.status = 'Panier';

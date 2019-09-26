@@ -41,7 +41,6 @@ export class MainDisplayProductComponent implements OnInit {
     let orders: PlacedOrder[];
     let basket: PlacedOrder = null;
     let orderLineToAdd: OrderLine = null;
-    let orderLineList: OrderLine[] = [];
     const currentUser: User = await this.search.getCurrentUser().then((res: HttpResponse<IUser>) => res.body);
 
     await this.search.findProductById(this.product.id).then((res: HttpResponse<IProduct>) => {
@@ -49,25 +48,20 @@ export class MainDisplayProductComponent implements OnInit {
     });
     if (productFromdDB.quantity > 0) {
       await this.search.findOrdersByUser().then((res: HttpResponse<PlacedOrder[]>) => (orders = res.body));
+
       orders.forEach(order => {
         if (order.status === OrderStatus.BASKET) {
           basket = order;
         }
       });
-      orderLineToAdd = new OrderLine(undefined, 1, moment(), OrderLineStatus.RESERVED, this.product, null);
 
       if (basket === null) {
-        await this.search.createOrderLine(orderLineToAdd);
-        orderLineList.push(orderLineToAdd);
-
-        basket = new PlacedOrder(undefined, moment(), Math.round(Math.random() * 10000), OrderStatus.BASKET, orderLineList, currentUser);
-        await this.search.createPlacedOrder(basket);
-      } else {
-        orderLineList = await this.search.getOrderLinesFromOrderId(basket.id).then((res: HttpResponse<OrderLine[]>) => res.body);
-        orderLineList.push(orderLineToAdd);
-        basket.orderlines = orderLineList;
-        await this.search.updatePlacedOrder(basket);
+        basket = new PlacedOrder(undefined, moment(), Math.round(Math.random() * 10000), OrderStatus.BASKET, undefined, currentUser);
+        await this.search.createPlacedOrder(basket).then((res: HttpResponse<PlacedOrder>) => (basket = res.body));
       }
+
+      orderLineToAdd = new OrderLine(undefined, 1, moment(), OrderLineStatus.RESERVED, this.product, basket);
+      await this.search.createOrderLine(orderLineToAdd);
 
       productFromdDB.quantity = productFromdDB.quantity - 1;
       this.search.updateProduct(productFromdDB);
