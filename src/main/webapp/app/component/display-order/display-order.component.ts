@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IPlacedOrder, PlacedOrder, OrderStatus } from '../../shared/model/placed-order.model';
+import { OrderStatus, PlacedOrder } from '../../shared/model/placed-order.model';
 import { OrderLine } from '../../shared/model/order-line.model';
+import { OrderLineService } from 'app/entities/order-line';
 
 @Component({
   selector: 'jhi-display-order',
@@ -14,9 +15,10 @@ export class DisplayOrderComponent implements OnInit {
   status: String;
   labelType: String;
 
-  constructor() {}
+  constructor(private orderLineService: OrderLineService) {}
 
   ngOnInit() {
+    //this.orderLineService.
     this.orderLines = this.order.orderlines;
     switch (this.order.status) {
       case OrderStatus.BASKET: {

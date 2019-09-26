@@ -5,6 +5,7 @@ import { SearchService } from './../../search/search.service';
 import { OrderStatus, PlacedOrder } from 'app/shared/model/placed-order.model';
 import { OrderLine } from 'app/shared/model/order-line.model';
 import { PlacedOrderService } from 'app/entities/placed-order';
+import { OrderLineService } from 'app/entities/order-line';
 
 @Component({
   selector: 'jhi-start-order',
@@ -20,14 +21,15 @@ export class MakeOrderComponent implements OnInit {
   years = [2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030];
   allPlacedOrderOfUser: PlacedOrder[];
   userCurrentBasket: PlacedOrder;
-  orderLine: OrderLine;
+  allOrderLineOfCurrentBasket: OrderLine[];
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private accountService: AccountService,
     private searchService: SearchService,
-    private placedOrderService: PlacedOrderService
+    private placedOrderService: PlacedOrderService,
+    private orderLineService: OrderLineService
   ) {}
 
   ngOnInit() {
@@ -46,6 +48,12 @@ export class MakeOrderComponent implements OnInit {
             }
           });
           this.userCurrentBasket = this.allPlacedOrderOfUser[this.allPlacedOrderOfUser.length - 1];
+          this.orderLineService.getOrderLinesByCurrentUserBasket().subscribe(firstResponseOrderLineService => {
+            // Récupération des orderlines du panier actuel
+            if (firstResponseOrderLineService.status === 200) {
+              this.allOrderLineOfCurrentBasket = firstResponseOrderLineService.body;
+            }
+          });
         }
       });
     });
