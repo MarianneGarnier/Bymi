@@ -12,4 +12,8 @@ export class SmallDisplayProductComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
+  public addBasket() {
+    // TODO
+  }
 }
