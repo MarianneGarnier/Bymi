@@ -22,5 +22,6 @@ export class BasketComponent implements OnInit {
 
   async getBasket() {
     await this.search.getReservedOrderLinesOfCurrentUser().then((res: HttpResponse<OrderLine[]>) => (this.orderLines = res.body));
+    this.order = this.orderLines[0].order;
   }
 }

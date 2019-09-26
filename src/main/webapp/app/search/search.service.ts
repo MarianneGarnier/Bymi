@@ -123,7 +123,7 @@ export class SearchService {
   }
 
   public getReservedOrderLinesOfCurrentUser(): Promise<HttpResponse<OrderLine[]>> {
-    return this.orderLineService.getReservedOrderLinesOfCurrentUser().toPromise();
+    return this.orderLineService.getOrderLinesByCurrentUserBasket().toPromise();
   }
 
   public testquery(str: string) {

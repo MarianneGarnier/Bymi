@@ -1,6 +1,4 @@
-import { IOrderLine } from './../../shared/model/order-line.model';
 import { IUser, User } from './../../core/user/user.model';
-import { BASKET_ROUTE } from './../basket/basket.route';
 import { SearchService } from './../../search/search.service';
 import { Component, OnInit } from '@angular/core';
 import { Product, IProduct } from '../../shared/model/product.model';
