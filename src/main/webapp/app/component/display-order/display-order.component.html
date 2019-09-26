@@ -1,6 +1,6 @@
-<h2 *ngIf="order.status === stateBasket; else notBasket">
-    Panier
-</h2>
+<div *ngIf="order.status === stateBasket; else notBasket">
+    <h2><a href="/basket">Panier</a> </h2>
+</div>
 <ng-template #notBasket>
     <h2>Order n°{{order.id}}
         <h4 class="float-right {{labelType}}">{{status}}</h4>
