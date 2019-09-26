@@ -15,8 +15,7 @@ import java.util.List;
 @Repository
 public interface OrderLineRepository extends JpaRepository<OrderLine, Long> {
 
-    @Query("select orderline from OrderLine orderline, PlacedOrder placedorder, User user where placedorder.id = orderline.order AND user.id = 3")
+    @Query("select orderline from OrderLine orderline where orderline.order.user.login = ?#{principal.username} AND orderline.status = 'RESERVED'")
     List<OrderLine> findByCurrentUserBasket();
-    //select orderline from OrderLine orderLine, PlacedOrder placedOrder where placedOrder.user.login = ?#{principal.username}  AND placedOrder.id = orderline.order.id
 
 }

@@ -119,7 +119,7 @@ public class OrderLineResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the placedOrder, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/order-lines/my-current-orderlines")
-    public List<OrderLine> getPlacedOrderByCurrentUser() {
+    public List<OrderLine> getOrderLinesByCurrentUser() {
         log.debug("REST request to get Orderlines : {}");
         return orderLineRepository.findByCurrentUserBasket();
     }
